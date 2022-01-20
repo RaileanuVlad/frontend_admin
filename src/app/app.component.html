@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+
+<body>
+
+  <div class="bg">
+
+    <!--<nav class="navbar navbar-expand" *ngIf="currentUser"> -->
+    <a (click)="logout()" *ngIf="currentUser">Logout</a>
+
+  
+
+    
+
+    <div class="d-flex justify-content-left">
+      <img class="headimg" src="assets/Header.png" alt="image">
+    </div>
+<!--
+    <div class="center">
+    <h1>In curs de actualizare!</h1>
+    </div>-->
+    <router-outlet></router-outlet>
+
+    <footer>
+      <div class="d-flex justify-content-center">
+        <img class="footimg" src="assets/Footer.png" alt="image">
+      </div>
+      <p style="text-align: left; width:49%; display: inline-block; font-size: 12.5px">
+        „Lucrăm împreună pentru o Europă incluzivă!” <br />
+        Proiectul este derulat de Centrul de Advocacy și Drepturile Omului (CADO) în parteneriat cu Asociația
+        Consultanților în Dezvoltare Comunitară (ACDC) și beneficiază de o finanțare în valoare de 245.973 Euro, prin
+        programul Active Citizens Fund România, finanțat de Islanda, Liechtenstein și Norvegia prin Granturile SEE
+        2014-2021.
+        <br />
+        Conținutul acestui website nu reprezintă în mod necesar poziția oficială a Granturilor SEE și Norvegiene
+        2014-2021. Întreaga răspundere asupra corectitudinii și coerenței informațiilor prezentate revine inițiatorilor
+        website-ului. Pentru informaţii oficiale despre granturile SEE şi norvegiene, accesaţi: www.eeagrants.org.
+        Informații despre Active Citizens Fund România sunt disponibile la www.activecitizensfund.ro.
+      </p>
+      <p style="text-align: right; width:50%;  display: inline-block; font-size: 12.5px">
+        Contact:<br />
+        Centrul de Advocacy și Drepturile Omului<br />
+        Tel/Fax: +4 021 795 8351<br />
+        E-mail: office@cado.org.ro<br />
+        Adresă: Calea Victoriei 122, Apt. 2, Apt. 2A, Sector 1, București, Cod 010093<br />
+
+      </p>
+
+
+
+
+
+    </footer>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+mat-card {
+  width: 400px;
+  height: 250px;
+  margin: auto;
+  text-align: center;
+  border-radius: 10px 10px 0px 0px !important;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+mat-form-field {
+  margin-top: 25px;
+  display: block;
+}
+
+button {
+  font-size: 18px;
+  width: 400px;
+  height: 60px;
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+  background-color: rgb(0, 200, 200) !important;
+}
+
+.div1 {
+  padding-top : 30vh;
+}
+
+.div2 {
+  text-align: center;
+}
+
+
+img{
+  height: auto;
+  width: 50%;
+}

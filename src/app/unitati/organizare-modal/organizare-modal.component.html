@@ -1,0 +1,420 @@
+<div bsModal class="modal fade" #organizareModal="bs-modal" tabindex="-1" role="dialog"
+    aria-labelledby="organizareModal" aria-hidden="true">
+    <div class="container">
+
+        <mat-card>
+            <mat-card-content>
+
+                <div style="text-align:right">
+                    <button style="width:auto" [disabled]="chillA" type="button" (click)="this.modal.hide()"
+                        mat-raised-button>
+                        <span>Inchide</span>
+                    </button>
+                </div>
+
+                <form (ngSubmit)="editIntrebareA()" id="thisoneA" (keydown.enter)="$event.preventDefault()">
+                    <br><br>
+
+                    <h2>General</h2>
+
+                    <mat-form-field>
+                        <label>L1. Există la nivelul școlii adoptat un plan de desegregare școlară? DACĂ DA: Vă rog să încărcați scan/copie după procedură prin butonul atașat
+                        </label>
+
+                        <mat-select [(ngModel)]="raspunsuri[26]" name="raspunsL1">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div style="float:left">
+                        <input type="file" #file1 placeholder="Choose file" (click)="resetProgress1()"
+                            (change)="uploadFile1(file1.files)" style="display:none">
+                        <button style="width:auto" [disabled]="chillA || (progress1 > 0 && progress1 < 100)"
+                            type="button" (click)="file1.click()" mat-raised-button>
+                            <span>Încarcă</span>
+                        </button>
+                        <span class="upload" *ngIf="progress1 > 0">
+                            {{progress1}}%
+                        </span>
+                        <span class="upload" *ngIf="progress1 ==100">
+                            Incărcare completă!
+                        </span>
+                    </div>
+
+                    <div style="float:right">
+                        <a *ngIf="uploaduri[26]" href={{uploaduri[26]}} mat-raised-button type="button"
+                            target="_blank" >
+                            Verifică documentul încărcat
+                        </a>
+                    </div>
+
+                    <br><br>
+
+                    <mat-form-field>
+                        <label>L2. Există măsuri adoptate la nivelul școlii pentru a preveni segregarea
+                            școlară? DACĂ DA, vă rog să precizați ce măsuri ați adoptat în acest sens:
+                        </label>
+                        <input matInput [(ngModel)]="raspunsuri[27]" name="raspunsL2">
+                    </mat-form-field>
+
+                    <div style="margin-top: 25px;display: block;font-size: 17px;text-align:left;">
+                        <label>L3. Vă rugăm să ne spuneți dacă sunteți sau nu de acord cu următoarele
+                            măsuri pentru prevenirea segregării(bifați toate opțiunile cu care sunteți de acord):
+                        </label>
+                        <mat-checkbox [(ngModel)]="rL3[0]" name="raspunsL3a">1. Distribuirea aleatoare prin sistem
+                            computerizat a copiilor în clasa pregătitoare
+                            (dacă sunt mai multe clase)
+                        </mat-checkbox><br>
+                        <mat-checkbox [(ngModel)]="rL3[1]" name="raspunsL3b">2. Distribuirea aleatoare prin sistem
+                            computerizat a copiilor în clasele de a V-a
+                            (dacă sunt mai multe clase)
+                        </mat-checkbox><br>
+                        <mat-checkbox [(ngModel)]="rL3[2]" name="raspunsL3c">3. Distribuirea aleatoare prin sistem
+                            computerizat a copiilor în clasele de a IX-a
+                            (dacă sunt mai multe clase)
+                        </mat-checkbox><br>
+                    </div>
+
+                    <br><br>
+
+                    <h2>A. Cadrul instituțional stabilit pentru derularea procesului.</h2>
+
+                    <mat-form-field>
+                        <label>1) La nivelul unității dvs. școlare a fost primită o adresă/comunicare prin care să
+                            vă fie adusă la cunoștință demararea procesului de monitorizare a segregării școlare și
+                            necesitatea ca școala să ofere suportul necesar în acest proces? </label>
+
+                        <mat-select [(ngModel)]="raspunsuri[0]" name="raspuns1A">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>2) La nivelul unității dvs. școlare a fost primită o adresă/comunicare prin care să
+                            fie descris protocolul de participare a unității școlare la procesul de monitorizare a
+                            segregării școlare / rolul jucat de școală în acest proces / modul în care vor fi utilizate
+                            rezultatele și concluziile? </label>
+                        <mat-select [(ngModel)]="raspunsuri[1]" name="raspuns2A">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>3) V-a fost, comunicată oficial, descrierea modului în care datele relevante necesare
+                            derulării procesului de monitorizare vor fi colectate de către reprezentanții școlii?
+                        </label>
+                        <mat-select [(ngModel)]="raspunsuri[2]" name="raspuns3A">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>4) Există, la nivelul unității școlare, responsabili special însărcinați care să
+                            participe la procesul de monitorizare a segregării școlare – cei care colectează datele
+                            privind caracteristicile elevilor, cei care centralizează aceste date, cei care transmit
+                            datele către minister și inspectorat, care încarcă datele într-un sistem dedicat (de ex.
+                            SIIIR), cei care urmăresc actualizarea datelor în acord cu modificările intervenite pe
+                            parcurs (transferul elevilor, repetenție, abandon școlar etc.)? </label>
+                        <mat-select [(ngModel)]="raspunsuri[3]" name="raspuns4A">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>5) Există o decizie/ un proces verbal al Consiliului de Administrație al școlii sau
+                            altei structurii de decizie din interiorul școlii privind demararea și gestionarea
+                            procesului de monitorizare a segregării școlare? </label>
+                        <mat-select [(ngModel)]="raspunsuri[4]" name="raspuns5A">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>6) Procesul de monitorizare a segregării școlare a fost integrat sistemului de
+                            control intern managerial – prin existența unei proceduri specifice de monitorizare a
+                            segregării școlare la nivelul unității de învățământ, inclusiv descrierea procesului de
+                            colectare și transmitere a datelor relevante?</label>
+                        <mat-select [(ngModel)]="raspunsuri[5]" name="raspuns6A">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>7) Există vreo sancțiune sau consecință negativă (sancțiune, mustrare administrativă
+                            etc.) prevăzută în cazul în care unitatea școlară nu va participa la procesul de
+                            monitorizare a segregării școlare? DACĂ DA: Vă rog descrieți tipul de sancțiune</label>
+                        <input matInput [(ngModel)]="raspunsuri[6]" name="raspuns7A">
+
+                    </mat-form-field>
+
+                    <br><br><br><br>
+                    <h2>B. Pregătirea reprezentanților sistemului școlar (Inspectorate, Unități școlare etc.) în vederea
+                        derulării procesului de monitorizare.</h2>
+
+                    <mat-form-field>
+                        <label>1) Vi s-a transmis un ghid scris pentru organizarea procesului de monitorizare a
+                            segregării școlare?</label>
+                        <mat-select [(ngModel)]="raspunsuri[7]" name="raspuns1B">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>2) La nivelul școlii sunt cunoscute actele normative relevante care reglementează
+                            segregarea școlară din România? </label>
+                        <mat-select [(ngModel)]="raspunsuri[8]" name="raspuns2B">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>3) Reprezentanți ai unității școlare au participat la formare/informare specifică privind
+                            modul de derulare în școală a procesului de segregare școlară?<br>
+                            DACĂ DA: Vă rog să menționați următoarele detalii, Denumire organizator, Perioada de
+                            derulare a formării (luna), Tema formării
+                        </label>
+                        <input matInput [(ngModel)]="raspunsuri[9]" name="raspuns3B">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>4) La nivelul școlii sunt cunoscuți indicatorii utilizați pentru evaluarea segregării
+                            școlare și modul lor de calcul?<br>
+                            DACĂ DA: Exemplificați cinci indicatori utilizați:
+                        </label>
+                        <input matInput [(ngModel)]="raspunsuri[10]" name="raspuns4B">
+                    </mat-form-field>
+
+                    <div style="margin-top: 25px;display: block;font-size: 17px;text-align:left">
+                        <label>5) Unde se vor transmite datele identificate și colectate la nivelul școlii pe parcursul
+                            monitorizării segregării școlare? Vă rog să alegeți una sau mai multe variante pe care le
+                            considerați.<br>
+                        </label>
+                        <mat-checkbox [(ngModel)]="r5B[0]" name="raspuns5Ba">Către Inspectoratul Școlar
+                        </mat-checkbox><br>
+                        <mat-checkbox [(ngModel)]="r5B[1]" name="raspuns5Bb">Către Consiliul de Părinți
+                        </mat-checkbox><br>
+                        <mat-checkbox [(ngModel)]="r5B[2]" name="raspuns5Bc">Către minister, prin încărcare în SIIIR
+                        </mat-checkbox><br>
+                        <mat-checkbox [(ngModel)]="r5B[3]" name="raspuns5Bd">Către ONG-uri interesate
+                        </mat-checkbox><br>
+                    </div>
+
+                    <div style="margin-top: 25px;display: block;font-size: 17px;text-align:left">
+                        <label>6) Care sunt etapele monitorizării segregării școlare? Vă rog să alegeți una sau mai
+                            multe variante pe care le considerați.<br></label>
+                        <mat-checkbox [(ngModel)]="r6B[0]" name="raspuns6Ba">Informarea cadrelor didactice și a
+                            părinților
+                            privind demararea monitorizării segregării
+                            școlare
+                        </mat-checkbox><br>
+                        <mat-checkbox [(ngModel)]="r6B[1]" name="raspuns6Bb">Pregătirea instrumentelor de colectare a
+                            datelor (chestionar, fișă de date etc.)
+                        </mat-checkbox><br>
+                        <mat-checkbox [(ngModel)]="r6B[2]" name="raspuns6Bc">Colectarea datelor printr-un sistem care
+                            asigură protecția datelor cu caracter
+                            personal
+                        </mat-checkbox><br>
+                        <mat-checkbox [(ngModel)]="r6B[3]" name="raspuns6Bd">Încărcarea datelor în SIIIR
+                        </mat-checkbox><br>
+                        <mat-checkbox [(ngModel)]="r6B[4]" name="raspuns6Be">Analiza datelor și comunicarea rezultatelor
+                            către părinți.
+                        </mat-checkbox><br>
+                        <mat-checkbox [(ngModel)]="r6B[5]" name="raspuns6Bf">Informarea autorităților locale asupra
+                            situației
+                        </mat-checkbox><br>
+                    </div>
+
+
+                    <div style="margin-top: 25px;display: block;font-size: 17px;text-align:left">
+                        <label>7) Ce decizii ar trebuie luate în cazul în care va exista segregare școlară confirmată în
+                            urma procesului de monitorizare? Vă rog să alegeți una sau mai multe variante pe care le
+                            considerați.<br>
+                        </label>
+                        <mat-checkbox [(ngModel)]="r7B[0]" name="raspuns7Ba">Consultarea părinților pentru a evalua
+                            gradul
+                            de nemulțumire al acestora
+                        </mat-checkbox><br>
+                        <mat-checkbox [(ngModel)]="r7B[1]" name="raspuns7Bb">Solicitarea de consiliere metodologică
+                            către
+                            Inspectoratul Școlar
+                        </mat-checkbox><br>
+                        <mat-checkbox [(ngModel)]="r7B[2]" name="raspuns7Bc">Elaborarea și adoptare unui plan de
+                            desegregare
+                            școlară
+                        </mat-checkbox><br>
+                        <mat-checkbox [(ngModel)]="r7B[3]" name="raspuns7Bd">Mutarea elevilor din clase/ultimele
+                            bănci/clădiri pentru a nu mai exista segregare
+                            școlară
+                        </mat-checkbox>
+                    </div>
+
+                    <mat-form-field>
+                        <label>8) Sunt aspecte încă neclare cu privire la procesul de derulare a monitorizării
+                            segregării școlare?<br>
+                            DACĂ DA: ce ați dori să clarificați suplimentar cu privire la organizarea procesului de
+                            monitorizare?<br>
+                        </label>
+                        <input matInput [(ngModel)]="raspunsuri[14]" name="raspuns8B">
+                    </mat-form-field>
+
+                    <br><br><br><br>
+                    <h2>C. Existența unui sistem recomandat la nivelul școlii pentru colectarea și înregistrarea datelor
+                        necesare evaluării segregării școlare.</h2>
+
+                    <mat-form-field>
+                        <label>1) Există la nivelul școlii pregătită o fișă/chestionar standardizat destinat colectării
+                            datelor necesare în procesul de monitorizare a segregării școlare?</label>
+                        <mat-select [(ngModel)]="raspunsuri[15]" name="raspuns1C">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>2) Este clar la nivelul școlii cum anume vor fi raportate datele colectare? </label>
+                        <mat-select [(ngModel)]="raspunsuri[16]" name="raspuns2C">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>3) Există un protocol semnat cu părinții/tutorii în vederea colectării datelor necesare
+                            în procesul de monitorizare a segregării școlare?
+                        </label>
+                        <mat-select [(ngModel)]="raspunsuri[17]" name="raspuns3C">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>4) La nivelul școlii au fost colectate datele prin care poate fi caracterizat fenomenul
+                            de segregare școlară?
+                        </label>
+                        <mat-select [(ngModel)]="raspunsuri[18]" name="raspuns4C">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+
+                    <br><br><br><br>
+                    <h2>D. Existența unui cadru stabilit la nivelul unității școlare pentru respectarea regimului
+                        datelor cu caracter personal.</h2>
+
+                    <mat-form-field>
+                        <label>1) Se cunosc, la nivelul școlii, reglementările legale privind regimul de utilizare a
+                            datelor cu caracter personal?</label>
+                        <mat-select [(ngModel)]="raspunsuri[19]" name="raspuns1D">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>2) Persoane angajate în cadrul unității școlare au participat la cursuri de formare
+                            privind modul de respectare a regimului datelor cu caracter personal? <br>
+                            DACĂ DA: Vă rog să menționați următoarele detalii: Denumire organizator, Perioada de
+                            derulare a formării (luna), Tema formării
+                        </label>
+                        <input matInput [(ngModel)]="raspunsuri[20]" name="raspuns2D">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>3) Există o procedură la nivelul școlii pentru respectarea regimului datelor cu caracter
+                            personal? DACĂ DA: Vă rog să încărcați scan/copie după procedură prin butonul atașat
+                        </label>
+                        <mat-select [(ngModel)]="raspunsuri[21]" name="raspuns3D">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div style="float:left">
+                        <input type="file" #file2 placeholder="Choose file" (click)="resetProgress2()"
+                            (change)="uploadFile2(file2.files)" style="display:none">
+                        <button style="width:auto" [disabled]="chillA || (progress2 > 0 && progress2 < 100)"
+                            type="button" (click)="file2.click()" mat-raised-button>
+                            <span>Încarcă</span>
+                        </button>
+                        <span class="upload" *ngIf="progress2 > 0">
+                            {{progress2}}%
+                        </span>
+                        <span class="upload" *ngIf="progress2 ==100">
+                            Incărcare completă!
+                        </span>
+
+                    </div>
+
+                    <div style="float:right">
+                        <a *ngIf="uploaduri[21]" href={{uploaduri[21]}} mat-raised-button type="button"
+                            target="_blank" >
+                            Verifică documentul încărcat
+                        </a>
+                    </div>
+                    <br><br>
+
+                    <mat-form-field>
+                        <label>4) Se colectează date cu caracter personal la nivelul unității școlare?
+                        </label>
+                        <mat-select [(ngModel)]="raspunsuri[22]" name="raspuns4D">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>5) Există o persoană desemnată la nivelul unității școlare pentru a prelua
+                            responsabilitatea respectării datelor cu caracter personal?
+                        </label>
+                        <mat-select [(ngModel)]="raspunsuri[23]" name="raspuns5D">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>6) Datele personale ale elevilor colectate în școală sunt arhivate anonimizat în perioada
+                            cât elevul este înscris în școală ?
+                        </label>
+                        <mat-select [(ngModel)]="raspunsuri[24]" name="raspuns6D">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>7) Câte persoane au acces la datele personale colectate la nivelul școlii?
+                        </label>
+                        <input matInput [(ngModel)]="raspunsuri[25]" name="raspuns7D">
+                    </mat-form-field>
+
+
+
+
+                </form>
+
+            </mat-card-content>
+            <button [disabled]="chillA" type="submit" form="thisoneA" mat-raised-button>
+                <span *ngIf="chillA==false">Salveaza</span>
+                <div class="container">
+                    <mat-spinner *ngIf="chillA==true" [diameter]="25" [strokeWidth]="2"></mat-spinner>
+                </div>
+            </button>
+        </mat-card>
+
+
+    </div>
+
+</div>

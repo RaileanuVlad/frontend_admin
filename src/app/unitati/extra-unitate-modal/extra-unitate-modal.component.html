@@ -1,0 +1,227 @@
+<meta charset="UTF-8" />
+<div bsModal class="modal fade" #extraUnitateModal="bs-modal" tabindex="-1" role="dialog"
+    aria-labelledby="extraUnitateModal" aria-hidden="true">
+    <div class="container">
+
+        <mat-card>
+            <mat-card-content>
+                <div class="mat-elevation-z8" style="border-radius: 10px; width: 75%; margin: auto; padding: 10px"
+                    *ngIf="popup4">
+                    <br>
+                    <p style="font-size:20px; font-weight: 500;">Vă rugăm să răspundeți la întrebările afișate, folosind
+                        meniurile respective pentru primele 3 întrebări, redactând răspunsul pentru a 4-a întrebare, și
+                        bifând căsuțele corespunzătoare pentru ultimele 3 întrebări. Nu uitați să umpleți câmpul de
+                        explicație dacă ați bifat una din ultimele 2 căsuțe.</p>
+                    <button mat-raised-button (click)="popup4=false" style="width: 20%">Am înțeles!</button>
+                    <br><br>
+                </div>
+                <br *ngIf="popup4">
+
+                <div style="text-align:right">
+                    <button style="width:20%" [disabled]="chillE" type="button" (click)="this.modal.hide()"
+                        mat-raised-button>
+                        <span>Închide</span>
+                    </button>
+                </div>
+
+                <form (ngSubmit)="editIntrebareU()" id="thisoneU" (keydown.enter)="$event.preventDefault()" ngNativeValidate #myform="ngForm"> 
+
+                    <h1>Date adiționale</h1>
+
+
+                    <mat-form-field>
+                        <label>1) Care a fost criteriul principal în funcție de care au fost alocați elevii în clasele
+                            în care învață, când au fost formate clasele pregătitoare?<br>
+                            SE ALEGE CRITERIUL PRINCIPAL UTILIZAT PENTRU ALOCAREA COPIILOR ÎN CLASE, O SINGURĂ ALEGERE:
+                        </label>
+
+                        <br><br>
+
+                        <mat-select panelClass="extraUselect" [(ngModel)]="raspunsuri[0]" name="raspuns1U">
+                            <mat-option style="border-top: 2px solid black;"
+                                value="a)În funcție de preferința părinților pentru un anumit cadru didactic">a)În
+                                funcție de preferința părinților pentru un anumit cadru didactic</mat-option>
+                            <mat-option
+                                value="b)În funcție de preferința cadrelor didactice care și-au selectat elevii din fiecare clasă">
+                                b)În funcție de preferința cadrelor didactice care și-au selectat elevii din fiecare
+                                clasă</mat-option>
+                            <mat-option
+                                value="c)Aleator, au fost alocați elevii pentru fiecare clasă ca la loterie, cadrele didactice sau părinții nu au avut nicio influență în alocarea copilului lor într-o anumită clasă.">
+                                c)Aleator, au fost alocați elevii pentru fiecare clasă ca la loterie, cadrele didactice
+                                sau părinții nu au avut nicio influență în alocarea copilului lor într-o anumită clasă.
+                            </mat-option>
+                            <mat-option value="d)Nu avem clase pregatitoare">
+                                d)Nu avem clase pregatitoare</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="e)Alte situații">
+                                e)Alte situații</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <input [(ngModel)]="uploaduri[0]" name="explicatie1U" #explicatie1U="ngModel"
+                        placeholder="Daca ați ales e)Alte situații."
+                        [required]="raspunsuri[0]=='e)Alte situații'" />
+
+                    <mat-form-field>
+                        <label class="lmic">2) În școala dumneavoastră se predă limba romani ? (NU/DA)
+                        </label>
+                        <mat-select [(ngModel)]="raspunsuri[1]" name="raspuns2U" class="imic">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label class="lmic">3) În școala dumneavoastră există mediator școlar? (NU/DA)
+
+                        </label>
+                        <mat-select [(ngModel)]="raspunsuri[2]" name="raspuns3U" class="imic">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>4) În școala dvs. au fost constituite grupe/clase/unități de învățământ formate
+                            preponderent sau doar cu elevi aparținând unui grup etnic, în scopul predării în limba
+                            maternă a acelui grup etnic sau în sistem bilingv?<br />
+                            Dacă da, vă rog indicați clasele în care există această situație ÎN școala dvs.:
+                        </label>
+                        <br /><br />
+                        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="5" [(ngModel)]="raspunsuri[3]" name="raspuns4U"></textarea>
+                    </mat-form-field>
+
+
+                    <label class="notmff">5) Este stabilit, la nivelul școlii, cum anume, se colectează datele privind
+                        etnia
+                        elevilor?<br />
+                    </label>
+                    <mat-checkbox [(ngModel)]="i5[0]" name="i5[0]" (change)="uncheckNu5()">Da, prin discuția cu părinții
+                    </mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i5[1]" name="i5[1]" (change)="uncheckNu5()">Da, după numele de familie.
+                    </mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i5[2]" name="i5[2]" (change)="uncheckNu5()">Da, prin identificare de
+                        către persoane care lucrează
+                        pentru comunitate de romi (lider local, mediator școlar, mediator sanitar etc.)</mat-checkbox>
+                    <br>
+                    <mat-checkbox [(ngModel)]="i5[3]" name="i5[3]" (change)="uncheckNu5()">Da, prin constatarea unor
+                        semnalmente fizice.
+                    </mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i5[4]" name="i5[4]" (change)="uncheckNu5()">Da, dacă locuiesc în
+                        comunitatea de romi.
+                    </mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i5[5]" name="i5[5]" (change)="uncheckNu5()">Da, după limba maternă.
+                    </mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i5[6]" name="i5[6]" (change)="uncheckNu5()">Da, în funcție de
+                        participarea la orele de limba
+                        romani (dacă există).</mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i5[7]" name="i5[7]" (change)="uncheckNu5()">Da, în funcție de
+                        comportamentul manifestat.
+                    </mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i5[8]" name="i5[8]" (change)="uncheckNu5()">Da, prin declarație semnată
+                        de către
+                        părinți/tutori/reprezentanți legali a etniei.</mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i5[9]" name="i5[9]" (change)="uncheckDa51()">Nu știu.</mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i5[10]" name="i5[10]" (change)="uncheckDa52()">Nu, nu este
+                        stabilit.(Explicati de ce in campul
+                        urmator)</mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i5[11]" name="i5[11]" (change)="uncheckDa53()">Nu, nu se
+                        colecteaza.(Explicati de ce in campul
+                        urmator)</mat-checkbox><br>
+                    <input [(ngModel)]="uploaduri[4]" name="explicatie5U" #explicatie5U="ngModel"
+                        placeholder="Explicație suplimentară, OBLIGATORIU dacă ați ales una din ultimele două căsuțe."
+                        [required]="i5[10] || i5[11]" />
+                    <!-- <p *ngIf="explicatie5U.errors?.required" style="color:red; text-align:left;">Trebuie să completați câmpul de explicație dacă ați ales una din ultimele două căsuțe!</p> -->
+
+
+
+
+                    <label class="notmff">6) Este stabilit, la nivelul școlii, cum anume, se colectează datele
+                        privind nivelul
+                        educației părinților elevilor?<br>
+                    </label>
+                    <mat-checkbox [(ngModel)]="i6[0]" name="i6[0]" (change)="uncheckNu6()">Da, prin discuția cu
+                        părinții.</mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i6[1]" name="i6[1]" (change)="uncheckNu6()">Da, prin identificare de
+                        către persoane care lucrează
+                        pentru comunitate(lider local, mediator școlar, mediator sanitar etc.)</mat-checkbox>
+                    <br>
+                    <mat-checkbox [(ngModel)]="i6[2]" name="i6[2]" (change)="uncheckNu6()">Da, prin constatarea modului
+                        de comunicare, de interacțiune
+                    </mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i6[3]" name="i6[3]" (change)="uncheckNu6()">Da, în funcție de
+                        comportamentul manifestat de
+                        părinți.</mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i6[4]" name="i6[4]" (change)="uncheckNu6()">Da, pe baza ocupației pe care
+                        o au părinții.
+                    </mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i6[5]" name="i6[5]" (change)="uncheckNu6()">Da, prin declarație semnată
+                        de către părinți/tutori/reprezentanți legali privind educația obținută </mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i6[6]" name="i6[6]" (change)="uncheckDa61()">Nu știu.</mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i6[7]" name="i6[7]" (change)="uncheckDa62()">Nu, nu este
+                        stabilit.(Explicati de ce in campul
+                        urmator)</mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i6[8]" name="i6[8]" (change)="uncheckDa63()">Nu, nu se
+                        colecteaza.(Explicati de ce in campul
+                        urmator)</mat-checkbox><br>
+                    <input [(ngModel)]="uploaduri[5]" name="explicatie6U" #explicatie6U="ngModel"
+                        placeholder="Explicație suplimentară, OBLIGATORIU dacă ați ales una din ultimele două căsuțe."
+                        [required]="i6[7] || i6[8]" />
+                    <!-- <p *ngIf="explicatie6U.errors?.required" style="color:red; text-align:left;">Trebuie să completați câmpul de explicație dacă ați ales una din ultimele două căsuțe!</p> -->
+
+
+                    <label class="notmff">7) Este stabilit, la nivelul școlii, cum anume, se colectează datele
+                        privind
+                        dizabilitățile elevilor?
+                    </label>
+                    <mat-checkbox [(ngModel)]="i7[0]" name="i7[0]" (change)="uncheckNu7()">Da, prin discuția cu
+                        părinții.</mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i7[1]" name="i7[1]" (change)="uncheckNu7()">Da, prin identificare de
+                        către persoane care lucrează
+                        pentru comunitate(lider local, mediator școlar, mediator sanitar etc.)</mat-checkbox>
+                    <br>
+                    <mat-checkbox [(ngModel)]="i7[2]" name="i7[2]" (change)="uncheckNu7()">Da, prin constatarea unor
+                        semnalmente fizice.
+                    </mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i7[3]" name="i7[3]" (change)="uncheckNu7()">Da, în funcție de
+                        comportamentul manifestat.</mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i7[4]" name="i7[4]" (change)="uncheckNu7()">Da, pe baza dosarului DGASPC
+                        care constată situații medicale speciale sau CES în baza certificatului de orientare CJRAE.
+                    </mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i7[5]" name="i7[5]" (change)="uncheckNu7()">Da, prin declarație privind
+                        dizabilitatea semnată de către părinți/tutori/reprezentanți legali.</mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i7[6]" name="i7[6]" (change)="uncheckDa71()">Nu știu.</mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i7[7]" name="i7[7]" (change)="uncheckDa72()">Nu, nu este
+                        stabilit.(Explicati de ce in campul
+                        urmator)</mat-checkbox><br>
+                    <mat-checkbox [(ngModel)]="i7[8]" name="i7[8]" (change)="uncheckDa73()">Nu, nu se
+                        colecteaza.(Explicati de ce in campul
+                        urmator)</mat-checkbox><br>
+                    <input [(ngModel)]="uploaduri[6]" name="explicatie7U" #explicatie7U="ngModel"
+                        placeholder="Explicație suplimentară, OBLIGATORIU dacă ați ales una din ultimele două căsuțe."
+                        [required]="i7[7] || i7[8]" />
+                    <!--<p *ngIf="explicatie7U.errors?.required" style="color:red; text-align:left;">Trebuie să completați câmpul de explicație dacă ați ales una din ultimele două căsuțe!</p>-->
+
+                </form>
+
+            </mat-card-content>
+
+            <button 
+            [disabled]="chillE || 
+            !myform.valid ||
+            (!i5[0] && !i5[1] && !i5[2] && !i5[3] && !i5[4] && !i5[5] && !i5[6] && !i5[7] && !i5[8] && !i5[9] && !i5[10] && !i5[11]) ||
+            (!i6[0] && !i6[1] && !i6[2] && !i6[3] && !i6[4] && !i6[5] && !i6[6] && !i6[7] && !i6[8]) ||
+            (!i7[0] && !i7[1] && !i7[2] && !i7[3] && !i7[4] && !i7[5] && !i7[6] && !i7[7] && !i7[8]) ||
+            !raspunsuri[0] || !raspunsuri[1] || !raspunsuri[2] || !raspunsuri[3]" 
+            type="submit" form="thisoneU" mat-raised-button>
+                <span *ngIf="chillE==false">Salvează</span>
+                <div class="container">
+                    <mat-spinner *ngIf="chillE==true" [diameter]="25" [strokeWidth]="2"></mat-spinner>
+                </div>
+            </button>
+
+        </mat-card>
+
+    </div>
+
+</div>

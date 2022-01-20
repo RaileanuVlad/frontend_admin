@@ -1,0 +1,202 @@
+<br><br><br>
+
+<div id="outer">
+
+
+  <mat-form-field style="width: 20%; float:left">
+    <mat-label>Caută</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input>
+  </mat-form-field>
+
+  <button class="btn btn-success btn-block" (click)="exportexcel()"
+    style="cursor: pointer; width:auto; color:white; float:left; margin-left: 2px; margin-right: 2px; margin-top: 8px">Descărcați
+    excel admin</button>
+  <button class="btn btn-success btn-block" (click)="showModalProgres()"
+    style="cursor: pointer; width:auto; color:white; float:left; margin-left: 2px; margin-right: 2px;">Verificați
+    progres județe</button>
+
+  <div style="float:left; margin-top:20px; margin-left:10px"><span>Școli complete: {{pTotal}}/{{tTotal}}</span></div>
+  <div class="progress-bar" style="float:left">
+    <div class="progress" [ngStyle]="{'width':pTotal/tTotal*100 + '%'}"></div>
+  </div>
+  <div style="float:left; margin-top:20px;"><span>{{pTotal/tTotal*100 | number: '1.2-2'}}%</span></div>
+
+  <button class="btn btn-primary btn-block" routerLink="/chestionar"
+    style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; margin-top: 8px; font-size:12px">Chestionare monitori</button>
+  <button class="btn btn-primary btn-block" routerLink="/scoring"
+    style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; margin-top: 8px; font-size:12px">Pagină
+    scoruri</button>
+  <button class="btn btn-primary btn-block" routerLink="/math"
+    style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; font-size:12px">Pagină
+    alerte</button>
+  <button class="btn btn-primary btn-block" routerLink="/organizare"
+    style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; margin-top: 8px; font-size:12px">Pas 4 școli</button>
+  <button class="btn btn-dark btn-block" routerLink="/preview"
+    style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; font-size:12px" disabled>Pagină
+    școli</button>
+
+
+</div>
+
+
+
+<div #tableToExport>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+    <ng-container matColumnDef="crt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nr. </th>
+      <td mat-cell *matCellDef="let element"> {{element.nr}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="nume">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nume </th>
+      <td mat-cell *matCellDef="let element"> {{element.nume}} <button *ngIf="element.explicatie"
+          matTooltip="{{element.explicatie}}" matTooltipPosition="right"
+          aria-label="Button that displays a tooltip when focused or hovered over">
+          ?
+        </button> </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="judet">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Judet </th>
+      <td mat-cell *matCellDef="let element"> {{element.judet}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="localitate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Localitate </th>
+      <td mat-cell *matCellDef="let element"> {{element.localitate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="mediu">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Mediu </th>
+      <td mat-cell *matCellDef="let element"> {{element.mediu}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sirues">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cod SIRUES </th>
+      <td mat-cell *matCellDef="let element"> {{element.sirues}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="director">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Director </th>
+      <td mat-cell *matCellDef="let element"> {{element.director}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="strada">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Strada </th>
+      <td mat-cell *matCellDef="let element"> {{element.strada}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nrStrada">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nr. </th>
+      <td mat-cell *matCellDef="let element"> {{element.nrStrada}} </td>
+    </ng-container>
+
+    <!--<ng-container matColumnDef="nrFurnizor">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nr. tel. </th>
+    <td mat-cell *matCellDef="let element"> {{element.nrFurnizor}} </td>
+  </ng-container>-->
+
+
+
+    <ng-container matColumnDef="uProcent">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pas 1 </th>
+
+      <td mat-cell *matCellDef="let element" [class.verde]='element.uProcent == 100 && element.nrInregC==null'
+        [class.galben]='element.uProcent < 100 && element.uProcent >= 75 && element.nrInregC==null'
+        [class.portocaliu]='element.uProcent < 75 && element.uProcent >= 50 && element.nrInregC==null'
+        [class.rosu]='element.uProcent < 50 && element.uProcent >= 25 && element.nrInregC==null'
+        [class.negru]='element.uProcent < 25 && element.nrInregC==null' [class.albastru]='element.nrInregC!=null'>
+        {{element.uProcent}}%
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cProcent">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pas 2 </th>
+      <td mat-cell *matCellDef="let element" [class.verde]='element.cProcent == 100 && element.nrInregC==null'
+        [class.galben]='element.cProcent < 100 && element.cProcent >= 75 && element.nrInregC==null'
+        [class.portocaliu]='element.cProcent < 75 && element.cProcent >= 50 && element.nrInregC==null'
+        [class.rosu]='element.cProcent < 50 && element.cProcent >= 25 && element.nrInregC==null'
+        [class.negru]='element.cProcent < 25 && element.nrInregC==null' [class.albastru]='element.nrInregC!=null'>
+        {{element.cProcent}}%
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="semnatura">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Link semnatura </th>
+      <td mat-cell *matCellDef="let element"> <a *ngIf="element.semnatura" href={{element.semnatura}}
+          class="btn btn-success btn-block" target="_blank" [class.albastru]='element.nrInregC!=null'>
+          <ng-container *ngIf="element.nrInregC==null">Semnatura</ng-container>
+          <ng-container *ngIf="element.nrInregC!=null">Document</ng-container>
+        </a> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nrIntr">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Număr de ieșire </th>
+      <td mat-cell *matCellDef="let element"> {{element.nrIntr}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dataIntr">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Dată de ieșire </th>
+      <td mat-cell *matCellDef="let element"> {{element.dataIntr}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nrInreg">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Număr depunere </th>
+      <td mat-cell *matCellDef="let element"
+        [class.rosu]='element.nrInreg!=null && element.nrInreg.indexOf(substr) == 0 && element.nrInregC==null'
+        [class.albastru]='element.nrInregC!=null'> {{element.nrInreg}} </td>
+    </ng-container>
+
+
+
+    <!--<ng-container matColumnDef="nrIesire">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Dată ieșire </th>
+    <td mat-cell *matCellDef="let element"> 
+      <span *ngIf="element.judet=='B' || element.judet=='BT' || element.judet=='BV'; else elseBlock">10.06.2021</span>
+<ng-template #elseBlock >05.07.2021</ng-template>  
+    </td>
+  </ng-container>-->
+
+    <ng-container matColumnDef="star">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Anexa 1</th>
+      <td mat-cell *matCellDef="let element">
+        <button class="btn btn-success btn-block" (click)="showModalPdf(element.id)">PDF</button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="star2">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Anexa 2</th>
+      <td mat-cell *matCellDef="let element">
+        <button class="btn btn-success btn-block" (click)="showModalPdf2(element.id)">PDF 2</button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="moderator">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <td mat-cell *matCellDef="let element">
+        <button class="btn btn-success btn-block" (click)="goToModerator(element.id)">Modifică</button>
+      </td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Nu există niciun rezultat pentru "{{input.value}}"</td>
+    </tr>
+  </table>
+</div>
+<mat-paginator [pageSizeOptions]="[100, 300, 500, 700, 2000]" showFirstLastButtons></mat-paginator>
+
+<app-pdf-modal #pdfModal></app-pdf-modal>
+<app-pdf2-modal #pdf2Modal></app-pdf2-modal>
+<app-progres-modal #progresModal></app-progres-modal>

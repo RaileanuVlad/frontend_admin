@@ -1,0 +1,124 @@
+<div bsModal class="modal fade" #infoModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="infoModal"
+    aria-hidden="true" (onHide)=" this.editScoalaForm.reset();">
+    <div class="container" *ngIf="editScoalaForm">
+
+        <mat-card>
+            <mat-card-content>
+                <div class="mat-elevation-z8" style="border-radius: 10px; width: 75%; margin: auto; padding: 10px" *ngIf="popup">
+                    <br>
+                    <p style="font-size:20px; font-weight: 500;">Vă rugăm să introduceți datele generale ale școlii, cât și numărul total de elevi din toată școala dumneavoastră, incluzând toate structurile acesteia.</p>
+                    <button mat-raised-button (click)="popup=false" style="width: 20%">Am înțeles!</button>
+                    <br><br>
+                </div>
+                <br *ngIf="popup">
+
+                <div style="text-align:right">
+                    <button style="width:10%" type="button" (click)="this.modal.hide()"
+                        mat-raised-button>
+                        <span>Închide</span>
+                    </button>
+                </div>
+
+                <form [formGroup]="editScoalaForm" (ngSubmit)="editScoala()" id="thisoneIM" (keydown.enter)="$event.preventDefault()">
+                    <h1>Adăugați informații</h1>
+
+                    <mat-form-field style = "margin-top: 25px;">
+                        <mat-label>Cod SIRUES unitate de învățământ: *</mat-label>
+                        <input matInput formControlName="sirues">
+                    </mat-form-field>
+
+                    <mat-form-field style = "margin-top: 25px;">
+                        <mat-label>Director unitate școlara: *</mat-label>
+                        <input matInput formControlName="director">
+                    </mat-form-field>
+
+                    <mat-form-field style = "margin-top: 25px;">
+                        <mat-label>Nume și prenume persoană care a furnizat datele în numele unității școlare: *
+                        </mat-label>
+                        <input matInput formControlName="furnizorDate">
+                    </mat-form-field>
+
+                    <mat-form-field style = "margin-top: 25px;">
+                        <mat-label>Număr de telefon persoană care a furnizat datele în numele unității școlare: *
+                        </mat-label>
+                        <input matInput formControlName="nrFurnizor">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width-input">
+                     
+                        <label class="lmic">Număr total de elevi în școală, învățământ primar și gimnazial (toate structurile):</label>
+                        <input class="imic" matInput formControlName="total" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+                    <p *ngIf="this.editScoalaForm.errors?.smallTotal" style="color:#DD3333; font-size:12px; text-align:right">Totalul
+                        trebuie sa fie mai mare decât oricare dintre numerele de sub "DIN CARE DOAR COPII:"！</p>
+                       <p *ngIf="this.editScoalaForm.errors?.totalZero" style="color:#DD3333; font-size:11px; text-align:right">Totalul
+                            elevilor din școala nu poate fi zero</p>
+
+                    <p style="color:rgb(0, 200, 200); font-weight: bold; text-align: left">DIN CARE DOAR COPII:</p>
+
+                    <mat-form-field class="full-width-input">
+                        <label class="lmic">romi:
+                        </label>
+                        <input class="imic" matInput formControlName="romi" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width-input">
+                        <label class="lmic">romi estimați(de către monitor, în urma vizitei pe teren)(opțional):
+                        </label>
+                        <input class="imic" matInput formControlName="romiE" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width-input">
+                        <label class="lmic">cu dizabilități cu dosar DGASPC / situații medicale sau certificat de orientare
+                            CJRAE:
+                        </label>
+                        <input class="imic" matInput formControlName="dizabilitati" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width-input">
+                        <label class="lmic">ai căror părinti au cel mult 8 clase absolvite (gimnaziu):
+                        </label>
+                        <input class="imic" matInput formControlName="parinti" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width-input">
+                        <label class="lmic">beneficiari de burse de ajutor social:
+                        </label>
+                        <input class="imic" matInput formControlName="burse" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width-input">
+                        <label class="lmic">repetenți:
+                        </label>
+                        <input class="imic" matInput formControlName="repetenti" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width-input">
+                        <label class="lmic">care nu au participat la cursuri online minim 80% din timp:
+                        </label>
+                        <input class="imic" matInput formControlName="online" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width-input">
+                        <label class="lmic">care au nevoie de educație remediala:
+                        </label>
+                        <input class="imic" matInput formControlName="remediala" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                </form>
+            </mat-card-content>
+            <button type="submit" form="thisoneIM" mat-raised-button [disabled]="!this.editScoalaForm.valid">Salvează</button>
+        </mat-card>
+
+
+    </div>
+</div>

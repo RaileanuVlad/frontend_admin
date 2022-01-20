@@ -1,0 +1,306 @@
+<div bsModal class="modal fade" #claseModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="claseModal"
+    aria-hidden="true">
+
+
+    <div class="container" *ngIf="editClasaForm && errMes==false && unitateCurenta.nrCladiriC!=0">
+
+        <mat-card>
+            <mat-card-content>
+
+                <div class="mat-elevation-z8" style="border-radius: 10px; width: 75%; margin: auto; padding: 10px;"
+                    *ngIf="popup3">
+                    <br>
+                    <p style="font-size:20px; font-weight: 500;">Vă rugăm să parcurgeți toate clasele din listă (care
+                        corespund alegerilor făcute la pasul anterior), alegănd pentru fiecare în parte litera atribuită
+                        lor, numărul clădirii în care se află, și toate informațiile despre numărul elevilor cerute.</p>
+                    <p>Clase curente (introduse de școli): {{unitateCurenta.clasaNumeC}} </p>
+                    <p>Clase curente (inactive): {{unitateCurenta.clasaNume1C}} </p>
+                    <p>Clase curente (introduse de admin): {{unitateCurenta.clasaNume2C}} </p>
+                    <button mat-raised-button (click)="popup3=false" style="width: 20%">Am înțeles!</button>
+                    <br><br>
+                </div>
+                <br *ngIf="popup3">
+
+                <div style="text-align:right">
+                    <button style="width:20%" type="button" (click)="this.modal.hide()" mat-raised-button>
+                        <span>Închide</span>
+                    </button>
+                </div>
+
+                <form [formGroup]="editClasaForm" id="thisoneCM" (keydown.enter)="$event.preventDefault()">
+                    <h1>{{unitateCurenta.nume}}</h1>
+                    <h2 *ngIf="clasaCurenta.cifra!='Mixt'">Adăugati informații pentru clasa <span
+                            style="color:rgb(0, 200, 200);"> a {{clasaCurenta.cifra}}-a
+                            {{this.editClasaForm.value.litera}}</span> in clădirea <span
+                            style="color:rgb(0, 200, 200);">{{this.editClasaForm.value.cladire}}</span></h2>
+                    <h2 *ngIf="clasaCurenta.cifra=='Mixt'">Adăugati informații pentru clasa <span
+                            style="color:rgb(0, 200, 200);"> {{clasaCurenta.cifra}}
+                            {{this.editClasaForm.value.litera}}</span> in clădirea <span
+                            style="color:rgb(0, 200, 200);">{{this.editClasaForm.value.cladire}}</span></h2>
+
+
+                    <ng-container *ngIf="this.clasaCurenta.moderator!=string2">
+                        <mat-form-field class="full-width-input">
+                            <label class="lmic">Omiteți această clasă din calculele finale (clasa devine inactivă,
+                                opțiune prezentă pentru clasele introduse de școli): </label>
+                            <mat-select class="imic" formControlName="moderator">
+                                <mat-option style="border-top: 2px solid black;" value="1">DA</mat-option>
+                                <mat-option style="border-bottom: 2px solid black;" value="0">NU</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </ng-container>
+
+                    <mat-form-field class="full-width-input" *ngIf="this.clasaCurenta.mixt">
+                        <label>Introduceți anii de învățământ, separați prin virgulă, din care este compusă această
+                            clasă mixtă(ex. 1, 2, 3 sau 5, 6 etc.):</label>
+                        <input style="float: none; width:100%; text-align:left" matInput formControlName="ani">
+                    </mat-form-field>
+                    <p *ngIf="this.editClasaForm.errors?.errAni" style="color:#DD3333; font-size:17px; text-align:left">
+                        Vă rugăm să folosiți formatul 1, 2, 3 (doar numere de la 0 la 8, despartite de o virgula)</p>
+
+                    <mat-form-field class="full-width-input">
+                        <label class="lmic">Litera acestei clase:</label>
+                        <mat-select formControlName="litera" class="imic">
+                            <mat-option *ngFor="let lit of litere" value={{lit}}>{{lit}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <p *ngIf="this.editClasaForm.errors?.noLit" style="color:#DD3333; font-size:11px; text-align:right">
+                        Vă rugăm să alegeți o literă pentru această clasă.</p>
+
+                    <mat-form-field class="full-width-input">
+                        <label>Vă rugăm să selectați din listă clădirea in care se află această clasă:</label>
+                        <mat-select class="imic" formControlName="cladire">
+                            <mat-option *ngFor="let nr of cladiri" value={{nr}}>Clădire {{nr}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <p *ngIf="this.editClasaForm.errors?.noCladire"
+                        style="color:#DD3333; font-size:11px; text-align:right">Vă rugăm să alegeți o clădire pentru
+                        această clasă.</p>
+
+                    <mat-form-field class="full-width-input">
+                        <label class="lmic">La elevii din clasă, predarea se face simultan, de către același cadru
+                            didactic?</label>
+                        <mat-select class="imic" formControlName="predare">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <p *ngIf="this.editClasaForm.errors?.noPredare"
+                        style="color:#DD3333; font-size:11px; text-align:right">Vă rugăm să alegeți un răspuns pentru
+                        această întrebare.</p>
+
+                    <!--<div class="row">
+                        <div class="column" style="border-right:1px solid black">
+                            <div style="width:100%; height:0%; border: 1px solid rgb(0, 200, 200);"></div>-->
+                    <br><br>
+                    <mat-form-field>
+                        <label *ngIf="!this.editClasaForm.errors?.smallTotal">Numar TOTAL copii in
+                            clasa:</label>
+                        <label *ngIf="this.editClasaForm.errors?.smallTotal" style="color:#DD3333;">Numar TOTAL
+                            copii in clasa:</label>
+                        <input matInput formControlName="total" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+
+                    </mat-form-field>
+                    <p *ngIf="this.editClasaForm.errors?.smallTotal"
+                        style="color:#DD3333; font-size:11px; text-align:right">Totalul
+                        trebuie să fie mai mare decât oricare dintre numerele de sub "DIN CARE DOAR COPII:"！</p>
+                    <p *ngIf="this.editClasaForm.errors?.totalZero"
+                        style="color:#DD3333; font-size:11px; text-align:right">Totalul
+                        copiilor din clasă nu poate fi zero</p>
+
+                    <p style="color:rgb(0, 200, 200); font-weight: bold; text-align: left">DIN CARE DOAR COPII:</p>
+
+                    <mat-form-field>
+                        <label>romi:</label>
+                        <input matInput formControlName="romi" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>romi estimați(de către monitor, în urma vizitei pe teren)(opțional):</label>
+                        <input matInput formControlName="romiE" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>cu dizabilități cu dosar DGASPC / situații medicale sau certificat de orientare
+                            CJRAE:</label>
+                        <input matInput formControlName="dizabilitati" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>ai căror părinți au cel mult 8 clase absolvite (gimnaziu):
+                        </label>
+                        <input matInput formControlName="parinti" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>beneficiari de burse de ajutor social:</label>
+                        <input matInput formControlName="burse" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>repetenți:</label>
+                        <input matInput formControlName="repetenti" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>care nu au participat la cursuri online minim 80% din timp:</label>
+                        <input matInput formControlName="online" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>care au nevoie de educație remedială:</label>
+                        <input matInput formControlName="remediala" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <!--</div>
+                        <div class="column" style="border-left:1px solid black">-->
+                    <div style="width:100%; height:0%; border: 1px solid rgb(0, 200, 200);"></div>
+                    <br><br>
+                    <mat-form-field floatLabel="never">
+                        <label
+                            *ngIf="!this.editClasaForm.errors?.bigTotal2b && !this.editClasaForm.errors?.smallTotal2b">Număr
+                            total copii în clasă ÎN ULTIMELE DOUĂ BANCI:</label>
+                        <label *ngIf="this.editClasaForm.errors?.bigTotal2b || this.editClasaForm.errors?.smallTotal2b"
+                            style="color:#DD3333;">Număr total copii în clasă ÎN ULTIMELE DOUĂ BANCI:</label>
+                        <input matInput formControlName="total2b" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+
+                    </mat-form-field>
+                    <p *ngIf="this.editClasaForm.errors?.bigTotal2b"
+                        style="color:#DD3333; font-size:12px; text-align:right">Totalul
+                        din ultimele 2 bănci nu poate să fie mai mare decât totalul din clasă!</p>
+                    <p *ngIf="this.editClasaForm.errors?.smallTotal2b"
+                        style="color:#DD3333; font-size:12px; text-align:right">Totalul
+                        trebuie să fie mai mare decat oricare dintre numerele de sub "DIN CARE DOAR COPII:"！</p>
+
+
+                    <p style="color:rgb(0, 200, 200); font-weight: bold; text-align: left">DIN CARE DOAR COPII:</p>
+
+                    <mat-form-field>
+                        <label>romi:</label>
+                        <input matInput formControlName="romi2b" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    
+
+                    <mat-form-field>
+                        <label>cu dizabilități cu dosar DGASPC / situații medicale sau certificat
+                            de orientare CJRAE:</label>
+                        <input matInput formControlName="dizabilitati2b" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>ai căror părinți au cel mult 8 clase absolvite (gimnaziu):</label>
+                        <input matInput formControlName="parinti2b" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>beneficiari de burse de ajutor social:
+                        </label>
+                        <input matInput formControlName="burse2b" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>repetenți:</label>
+                        <input matInput formControlName="repetenti2b" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>care nu au participat la cursuri online minim 80% din timp:</label>
+                        <input matInput formControlName="online2b" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>care au nevoie de educație remedială:</label>
+                        <input matInput formControlName="remediala2b" type="number"
+                            onkeydown="return event.keyCode !== 69 && event.keyCode !== 189" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </mat-form-field>
+
+                    <!--</div>
+                    </div>-->
+
+
+
+
+                </form>
+                <h2 *ngIf="clasaCurenta.cifra!='Mixt'">^ Adăugati informații pentru clasa <span
+                        style="color:rgb(0, 200, 200);"> a {{clasaCurenta.cifra}}-a
+                        {{this.editClasaForm.value.litera}}</span> in clădirea <span
+                        style="color:rgb(0, 200, 200);">{{this.editClasaForm.value.cladire}}</span> ^</h2>
+                <h2 *ngIf="clasaCurenta.cifra=='Mixt'">^ Adăugati informații pentru clasa <span
+                        style="color:rgb(0, 200, 200);"> {{clasaCurenta.cifra}}
+                        {{this.editClasaForm.value.litera}}</span> in clădirea <span
+                        style="color:rgb(0, 200, 200);">{{this.editClasaForm.value.cladire}}</span> ^</h2>
+
+            </mat-card-content>
+
+            <div class="leftb">
+                <button type="button" form="thisoneCM" mat-raised-button [disabled]="this.iter == 0 "
+                    (click)="nextPage(false)">Înapoi</button>
+            </div>
+            <div class="rightb">
+                <button type="button" form="thisoneCM" mat-raised-button [disabled]="!this.editClasaForm.valid "
+                    (click)="nextPage(true)">Înainte</button>
+            </div>
+            <!--
+            <p style="color:#DD3333; display:inline; font-size:12px;" *ngIf="!this.editClasaForm.valid">Puteți trece la
+                următoarea clasă doar după ce ați completat CORECT toate datele pentru această clasă!</p><br>
+            <p *ngIf="this.editClasaForm.errors?.smallTotal" style="color:#DD3333; font-size:12px">Totalul trebuie să
+                fie mai mare decât oricare dintre numerele de sub "DIN CARE DOAR COPII:"！</p>
+            <p *ngIf="this.editClasaForm.errors?.bigTotal2b" style="color:#DD3333; font-size:12px">Totalul din ultimele
+                2 bănci nu poate să fie mai mare decât totalul din clasă!</p>
+            <p *ngIf="this.editClasaForm.errors?.smallTotal2b" style="color:#DD3333; font-size:12px">Totalul trebuie să
+                fie mai mare decat oricare dintre numerele de sub "DIN CARE DOAR COPII:"！</p>
+            <p *ngIf="this.editClasaForm.errors?.totalZero" style="color:#DD3333; font-size:12px">Totalul
+                copiilor din clasă nu poate fi zero</p>
+            -->
+
+        </mat-card>
+
+
+    </div>
+
+    <div class="container" *ngIf="errMes || unitateCurenta.nrCladiriC==0">
+        <mat-card>
+            <mat-card-content>
+                <h1>Vă rugăm să adăugați numărul de clădiri la butonul "Date structură" si numărul de clase la butonul
+                    "Număr clase" înainte de a accesa butonul "Informații clase".
+                </h1>
+                <button mat-raised-button type="button" (click)="this.modal.hide()">Ok</button>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

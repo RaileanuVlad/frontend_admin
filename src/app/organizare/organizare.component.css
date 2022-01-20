@@ -1,0 +1,118 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 20px;
+    width: 100%;
+  }
+  
+  th.mat-header-cell:first-child{
+    border-left: 3px solid lightgrey !important;
+    padding-left:5px;
+    padding-right:5px;
+  }
+  
+  th.mat-header-cell:last-child{
+    border-right: 3px solid lightgrey !important;
+  }
+  
+  th.mat-header-cell{
+    border-left: 1px solid lightgrey !important;
+    padding-left:5px;
+    padding-right:5px;
+  }
+  
+  td.mat-footer-cell:first-child{
+    border-left: 3px solid lightgrey !important;
+    padding-left:5px;
+    padding-right:5px;
+  }
+  
+  td.mat-footer-cell:last-child{
+    border-right: 3px solid lightgrey !important;
+  }
+  
+  td.mat-footer-cell{
+    border-left: 1px solid lightgrey !important;
+    padding-left:5px;
+    padding-right:5px;
+  }
+  
+  td.mat-cell:first-child {
+    border-left: 3px solid lightgrey !important;
+    padding-left:5px;
+    padding-right:5px;
+  }
+  
+  td.mat-cell:last-child {
+    border-right: 3px solid lightgrey !important;
+  }
+  
+  td.mat-cell {
+    border-left: 1px solid lightgrey !important;
+    padding-left:5px;
+    padding-right:5px;
+  }
+  
+  .mat-paginator {
+    background-color:#ffffff00;
+    color : rgb(0, 200, 200);
+    font-size: 16px;
+  }
+  
+  
+  .negru{
+    background-color: black;
+    color:white;
+  }
+  
+  .verde{
+    background-color: green;
+    color:white;
+  }
+  
+  .galben{
+    background-color: yellow;
+  }
+  
+  .portocaliu{
+    background-color: orange;
+  }
+  
+  .rosu{
+    background-color: red;
+  }
+  
+  .albastru{
+    background-color: cyan;
+    color:black;
+  }
+  
+  ::ng-deep .mat-tooltip {
+    font-size: 20px;
+  }
+  
+  #outer
+  {
+      width:100%;
+      text-align: center;
+  }
+  
+  .progress-bar {
+    background-color: grey;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin: 15px;
+    height: 30px;
+    width: 15%;
+    max-width: 100%;
+  }
+  
+  .progress {
+    background: #007bff;
+    border-radius: 3px;
+    height: 30px;
+    transition: width 0.5s ease-in;
+  }
+  

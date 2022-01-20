@@ -1,0 +1,107 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 20px;
+  width: 100%;
+}
+
+th.mat-header-cell:first-child {
+  border-left: 3px solid lightgrey !important;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+th.mat-header-cell:last-child {
+  border-right: 3px solid lightgrey !important;
+}
+
+th.mat-header-cell {
+  border-left: 1px solid lightgrey !important;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+td.mat-footer-cell:first-child {
+  border-left: 3px solid lightgrey !important;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+td.mat-footer-cell:last-child {
+  border-right: 3px solid lightgrey !important;
+}
+
+td.mat-footer-cell {
+  border-left: 1px solid lightgrey !important;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+td.mat-cell:first-child {
+  border-left: 3px solid lightgrey !important;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+td.mat-cell:last-child {
+  border-right: 3px solid lightgrey !important;
+}
+
+td.mat-cell {
+  border-left: 1px solid lightgrey !important;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.mat-paginator {
+  background-color: #ffffff00;
+  color: rgb(0, 200, 200);
+  font-size: 16px;
+}
+
+.negru {
+  background-color: black;
+  color: white;
+}
+
+.verde {
+  background-color: green;
+  color: white;
+}
+
+.galben {
+  background-color: yellow;
+}
+
+.portocaliu {
+  background-color: orange;
+}
+
+.rosu {
+  background-color: red;
+}
+
+.albastru {
+  background-color: cyan;
+}
+
+::ng-deep .mat-tooltip {
+  font-size: 20px !important;
+  margin: auto !important;
+  padding: auto !important;
+  white-space: pre-line !important;
+  width:100% !important;
+  height:100% !important;
+  max-width: unset !important;
+}
+
+.inviz {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}

@@ -1,0 +1,153 @@
+Date : 2021-06-18 15:44:23
+Directory : c:\Users\Vlad\Desktop\Segregare\frontend_update
+Total : 101 files,  40090 codes, 174 comments, 1003 blanks, all 41267 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          8 |     33,755 |         38 |          7 |     33,800 |
+| XML        |          3 |      2,679 |          0 |          1 |      2,680 |
+| TypeScript |         39 |      1,805 |         78 |        536 |      2,419 |
+| HTML       |         18 |      1,074 |         10 |        286 |      1,370 |
+| CSS        |         18 |        722 |         46 |        158 |        926 |
+| JavaScript |         14 |         41 |          2 |          1 |         44 |
+| Markdown   |          1 |         14 |          0 |         14 |         28 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                   | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                      |        101 |     40,090 |        174 |      1,003 |     41,267 |
+| dist                                                                                                                   |         18 |      2,717 |         44 |          8 |      2,769 |
+| dist\frontend                                                                                                          |         18 |      2,717 |         44 |          8 |      2,769 |
+| src                                                                                                                    |         77 |      3,653 |         92 |        977 |      4,722 |
+| src\app                                                                                                                |         66 |      3,511 |         18 |        941 |      4,470 |
+| src\app\add                                                                                                            |          3 |        110 |          0 |         37 |        147 |
+| src\app\home                                                                                                           |          3 |         14 |          0 |         10 |         24 |
+| src\app\intrebari                                                                                                      |          3 |        116 |          0 |         27 |        143 |
+| src\app\login                                                                                                          |          3 |        100 |          2 |         28 |        130 |
+| src\app\models                                                                                                         |          8 |        119 |          0 |         17 |        136 |
+| src\app\shared                                                                                                         |          6 |        289 |          6 |        103 |        398 |
+| src\app\test                                                                                                           |          3 |         43 |          5 |         24 |         72 |
+| src\app\unitati                                                                                                        |         31 |      2,479 |          0 |        648 |      3,127 |
+| src\app\unitati\clase-modal                                                                                            |          4 |        403 |          0 |        104 |        507 |
+| src\app\unitati\extra-unitate-modal                                                                                    |          3 |        327 |          0 |         83 |        410 |
+| src\app\unitati\info-modal                                                                                             |          3 |        147 |          0 |         38 |        185 |
+| src\app\unitati\info-unitate-modal                                                                                     |          3 |        307 |          0 |         75 |        382 |
+| src\app\unitati\organizare-modal                                                                                       |          3 |        188 |          0 |         56 |        244 |
+| src\app\unitati\organizareb-modal                                                                                      |          3 |        196 |          0 |         52 |        248 |
+| src\app\unitati\organizarec-modal                                                                                      |          3 |        218 |          0 |         49 |        267 |
+| src\app\unitati\organizared-modal                                                                                      |          3 |        186 |          0 |         53 |        239 |
+| src\app\unitati\pdf-modal                                                                                              |          3 |        214 |          0 |         71 |        285 |
+| src\environments                                                                                                       |          2 |          6 |         11 |          4 |         21 |
++------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                               | language   | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\README.md                                                              | Markdown   |         14 |          0 |         14 |         28 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\angular.json                                                           | JSON       |        121 |         38 |          0 |        159 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\213-es2015.3cd783d158cb80800249.js                       | JavaScript |          1 |          0 |          0 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\213-es5.3cd783d158cb80800249.js                          | JavaScript |          1 |          0 |          0 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\33-es2015.d05189ed718c54e7866b.js                        | JavaScript |          1 |          0 |          0 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\33-es5.d05189ed718c54e7866b.js                           | JavaScript |          1 |          0 |          0 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\406-es2015.fa4c2da0fa5919f131f6.js                       | JavaScript |          1 |          0 |          0 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\406-es5.fa4c2da0fa5919f131f6.js                          | JavaScript |          1 |          0 |          0 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\arrow_left.db6e2d88c7c35a775ce4.svg                      | XML        |          4 |          0 |          0 |          4 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\arrow_right.f7c6ac6d310d3b82f0a0.svg                     | XML        |          4 |          0 |          0 |          4 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg             | XML        |      2,671 |          0 |          1 |      2,672 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\index.html                                               | HTML       |         19 |          0 |          6 |         25 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\main-es2015.7210d46a5f6b38f9d438.js                      | JavaScript |          1 |          0 |          0 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\main-es5.7210d46a5f6b38f9d438.js                         | JavaScript |          1 |          0 |          0 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\polyfills-es2015.a006a65a686a23197d1f.js                 | JavaScript |          1 |          0 |          0 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\polyfills-es5.e0973f62d7bb3ea2e340.js                    | JavaScript |          1 |          0 |          0 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\runtime-es2015.8b485eb3c6af42bcb4e5.js                   | JavaScript |          1 |          0 |          0 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\runtime-es5.8b485eb3c6af42bcb4e5.js                      | JavaScript |          1 |          0 |          0 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\scripts.d6dcd2355c40194b878b.js                          | JavaScript |          1 |          0 |          0 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\dist\frontend\styles.a06e258042b70dd32226.css                          | CSS        |          6 |         44 |          1 |         51 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\package-lock.json                                                      | JSON       |     33,373 |          0 |          1 |     33,374 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\package.json                                                           | JSON       |         60 |          0 |          1 |         61 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\add\add.component.css                                          | CSS        |         39 |          0 |          8 |         47 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\add\add.component.html                                         | HTML       |         27 |          0 |         15 |         42 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\add\add.component.ts                                           | TypeScript |         44 |          0 |         14 |         58 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\app-routing.module.ts                                          | TypeScript |         23 |          0 |          5 |         28 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\app.component.css                                              | CSS        |         34 |          0 |          7 |         41 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\app.component.html                                             | HTML       |         36 |          5 |         18 |         59 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\app.component.spec.ts                                          | TypeScript |         20 |          0 |          3 |         23 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\app.component.ts                                               | TypeScript |         25 |          0 |          5 |         30 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\app.module.ts                                                  | TypeScript |        103 |          0 |          9 |        112 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\home\home.component.css                                        | CSS        |          0 |          0 |          1 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\home\home.component.html                                       | HTML       |          1 |          0 |          0 |          1 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\home\home.component.ts                                         | TypeScript |         13 |          0 |          9 |         22 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\intrebari\intrebari.component.css                              | CSS        |         39 |          0 |          8 |         47 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\intrebari\intrebari.component.html                             | HTML       |         21 |          0 |          7 |         28 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\intrebari\intrebari.component.ts                               | TypeScript |         56 |          0 |         12 |         68 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\login\login.component.css                                      | CSS        |         30 |          0 |          6 |         36 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\login\login.component.html                                     | HTML       |         19 |          0 |         10 |         29 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\login\login.component.ts                                       | TypeScript |         51 |          2 |         12 |         65 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\models\clasa.model.ts                                          | TypeScript |         30 |          0 |          2 |         32 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\models\intrebare.model.ts                                      | TypeScript |         11 |          0 |          2 |         13 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\models\monitor.model.ts                                        | TypeScript |          8 |          0 |          2 |         10 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\models\monitorIntrebare.model.ts                               | TypeScript |         10 |          0 |          2 |         12 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\models\scoala.model.ts                                         | TypeScript |         19 |          0 |          2 |         21 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\models\scoalaIntrebare.model.ts                                | TypeScript |         11 |          0 |          2 |         13 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\models\unitate.model.ts                                        | TypeScript |         19 |          0 |          3 |         22 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\models\unitateIntrebare.model.ts                               | TypeScript |         11 |          0 |          2 |         13 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\shared\api.service.ts                                          | TypeScript |        181 |          0 |         77 |        258 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\shared\auth.guard.ts                                           | TypeScript |         18 |          2 |          4 |         24 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\shared\auth.service.ts                                         | TypeScript |         33 |          2 |          7 |         42 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\shared\error.interceptor.ts                                    | TypeScript |         19 |          1 |          4 |         24 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\shared\jwt.interceptor.ts                                      | TypeScript |         19 |          1 |          4 |         24 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\shared\search.pipe.ts                                          | TypeScript |         19 |          0 |          7 |         26 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\test\test.component.css                                        | CSS        |         10 |          0 |          1 |         11 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\test\test.component.html                                       | HTML       |         22 |          5 |         18 |         45 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\test\test.component.ts                                         | TypeScript |         11 |          0 |          5 |         16 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\clase-modal\clase-modal.component.css                  | CSS        |         65 |          0 |         17 |         82 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\clase-modal\clase-modal.component.html                 | HTML       |        151 |          0 |         41 |        192 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\clase-modal\clase-modal.component.ts                   | TypeScript |        142 |          0 |         39 |        181 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\clase-modal\sum-validator.ts                           | TypeScript |         45 |          0 |          7 |         52 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\extra-unitate-modal\extra-unitate-modal.component.css  | CSS        |         84 |          0 |         21 |        105 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\extra-unitate-modal\extra-unitate-modal.component.html | HTML       |        146 |          0 |         30 |        176 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\extra-unitate-modal\extra-unitate-modal.component.ts   | TypeScript |         97 |          0 |         32 |        129 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\info-modal\info-modal.component.css                    | CSS        |         44 |          0 |          9 |         53 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\info-modal\info-modal.component.html                   | HTML       |         37 |          0 |         12 |         49 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\info-modal\info-modal.component.ts                     | TypeScript |         66 |          0 |         17 |         83 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\info-unitate-modal\info-unitate-modal.component.css    | CSS        |         73 |          0 |         16 |         89 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\info-unitate-modal\info-unitate-modal.component.html   | HTML       |        111 |          0 |         28 |        139 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\info-unitate-modal\info-unitate-modal.component.ts     | TypeScript |        123 |          0 |         31 |        154 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\organizare-modal\organizare-modal.component.css        | CSS        |         48 |          0 |         10 |         58 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\organizare-modal\organizare-modal.component.html       | HTML       |         69 |          0 |         15 |         84 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\organizare-modal\organizare-modal.component.ts         | TypeScript |         71 |          0 |         31 |        102 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\organizareb-modal\organizareb-modal.component.css      | CSS        |         48 |          0 |         10 |         58 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\organizareb-modal\organizareb-modal.component.html     | HTML       |         76 |          0 |         16 |         92 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\organizareb-modal\organizareb-modal.component.ts       | TypeScript |         72 |          0 |         26 |         98 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\organizarec-modal\organizarec-modal.component.css      | CSS        |         48 |          0 |          9 |         57 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\organizarec-modal\organizarec-modal.component.html     | HTML       |         97 |          0 |         17 |        114 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\organizarec-modal\organizarec-modal.component.ts       | TypeScript |         73 |          0 |         23 |         96 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\organizared-modal\organizared-modal.component.css      | CSS        |         48 |          0 |          9 |         57 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\organizared-modal\organizared-modal.component.html     | HTML       |         66 |          0 |         16 |         82 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\organizared-modal\organizared-modal.component.ts       | TypeScript |         72 |          0 |         28 |        100 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\pdf-modal\pdf-modal.component.css                      | CSS        |         12 |          0 |          3 |         15 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\pdf-modal\pdf-modal.component.html                     | HTML       |         74 |          0 |         16 |         90 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\pdf-modal\pdf-modal.component.ts                       | TypeScript |        128 |          0 |         52 |        180 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\unitati.component.css                                  | CSS        |         80 |          0 |         16 |         96 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\unitati.component.html                                 | HTML       |         81 |          0 |         15 |         96 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\app\unitati\unitati.component.ts                                   | TypeScript |        132 |          0 |         36 |        168 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\environments\environment.prod.ts                                   | TypeScript |          3 |          0 |          1 |          4 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\environments\environment.ts                                        | TypeScript |          3 |         11 |          3 |         17 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\index.html                                                         | HTML       |         21 |          0 |          6 |         27 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\karma.conf.js                                                      | JavaScript |         28 |          2 |          1 |         31 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\main.ts                                                            | TypeScript |         10 |          0 |          4 |         14 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\polyfills.ts                                                       | TypeScript |          1 |         55 |          8 |         64 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\styles.css                                                         | CSS        |         14 |          2 |          6 |         22 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\test.ts                                                            | TypeScript |         13 |          4 |          4 |         21 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\tsconfig.app.json                                                  | JSON       |         14 |          0 |          1 |         15 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\tsconfig.spec.json                                                 | JSON       |         18 |          0 |          1 |         19 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\src\tslint.json                                                        | JSON       |         17 |          0 |          1 |         18 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\tsconfig.json                                                          | JSON       |         22 |          0 |          1 |         23 |
+| c:\Users\Vlad\Desktop\Segregare\frontend_update\tslint.json                                                            | JSON       |        130 |          0 |          1 |        131 |
+| Total                                                                                                                  |            |     40,090 |        174 |      1,003 |     41,267 |
++------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

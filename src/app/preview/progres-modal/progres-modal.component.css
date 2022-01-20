@@ -1,0 +1,33 @@
+.container {
+  width: auto;
+  height: 100%;
+  display: flex;
+}
+
+mat-card {
+  width: auto;
+  height: auto;
+  margin: auto;
+  border-radius: 10px !important;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 15px;
+}
+
+th {
+  text-align: left;
+}
+
+table {
+  border-spacing: 5px;
+}

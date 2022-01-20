@@ -1,0 +1,159 @@
+<div bsModal class="modal fade" #infoUnitateModal="bs-modal" tabindex="-1" role="dialog"
+    aria-labelledby="infoUnitateModal" aria-hidden="true" (onHide)=" this.editUnitateForm.reset();">
+    <div class="container" *ngIf="editUnitateForm">
+
+        <mat-card>
+            <mat-card-content>
+
+                <div class="mat-elevation-z8" style="border-radius: 10px; width: 75%; margin: auto; padding: 10px"
+                    *ngIf="popup2">
+                    <br>
+                    <p style="font-size:20px; font-weight: 500;">Vă rugăm să selectați tipul de învățământ și numărul
+                        total de clase din fiecare nivel de învățământ pentru această structură.</p>
+                    <button mat-raised-button (click)="popup2=false" style="width: 20%">Am înțeles!</button>
+                    <br><br>
+                </div>
+                <br *ngIf="popup2">
+
+                <div style="text-align:right">
+                    <button style="width:20%" [disabled]="chillIU" type="button" (click)="this.modal.hide()"
+                        mat-raised-button>
+                        <span>Închide</span>
+                    </button>
+                </div>
+
+                <form [formGroup]="editUnitateForm" (ngSubmit)="editUnitate()" id="thisoneIUM"
+                    (keydown.enter)="$event.preventDefault()">
+                    <h1>{{unitateCurenta.nume}}</h1>
+
+
+                    <mat-form-field class="full-width-input">
+                        <mat-label>Alegeți nivelul de învățământ pentru această unitate:</mat-label>
+                        <mat-select formControlName="nivel">
+                            <mat-option value="Școală primară" style="border-top: 2px solid black;">Școală primară
+                            </mat-option>
+                            <mat-option value="Școală gimnazială">Școală gimnazială</mat-option>
+                            <mat-option value="Șc Primară și Șc. Gimnazială" style="border-bottom: 2px solid black;">Șc
+                                Primară și Șc. Gimnazială</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+
+
+                    <h2>Câte clase din fiecare nivel de învățământ aveți în total în {{unitateCurenta.nume}}?</h2>
+                    <div class="row" style="background: linear-gradient(#000, #000) no-repeat center/2px 100%;">
+                        <div class="column"
+                            *ngIf="this.editUnitateForm.value.nivel=='Școală primară' || this.editUnitateForm.value.nivel=='Șc Primară și Șc. Gimnazială'">
+                            <mat-form-field class="full-width-input">
+                                <label>A 0-a</label>
+                                <mat-select formControlName="litera0" class="drop">
+                                    <mat-option *ngFor="let lit of numere; let idxI = index" value={{lit}}>{{idxI}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width-input">
+                                <label>A 1-a</label>
+                                <mat-select formControlName="litera1" class="drop">
+                                    <mat-option *ngFor="let lit of numere; let idxI = index" value={{lit}}>{{idxI}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width-input">
+                                <label>A 2-a</label>
+                                <mat-select formControlName="litera2" class="drop">
+                                    <mat-option *ngFor="let lit of numere; let idxI = index" value={{lit}}>{{idxI}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width-input">
+                                <label>A 3-a</label>
+                                <mat-select formControlName="litera3" class="drop">
+                                    <mat-option *ngFor="let lit of numere; let idxI = index" value={{lit}}>{{idxI}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width-input">
+                                <label>A 4-a</label>
+                                <mat-select formControlName="litera4" class="drop">
+                                    <mat-option *ngFor="let lit of numere; let idxI = index" value={{lit}}>{{idxI}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="column"
+                            *ngIf="this.editUnitateForm.value.nivel=='Școală gimnazială' || this.editUnitateForm.value.nivel=='Șc Primară și Șc. Gimnazială' ">
+
+                            <mat-form-field class="full-width-input">
+                                <label>A 5-a</label>
+                                <mat-select formControlName="litera5" class="drop">
+                                    <mat-option *ngFor="let lit of numere; let idxI = index" value={{lit}}>{{idxI}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+
+
+                            <mat-form-field class="full-width-input">
+                                <label>A 6-a</label>
+                                <mat-select formControlName="litera6" class="drop">
+                                    <mat-option *ngFor="let lit of numere; let idxI = index" value={{lit}}>{{idxI}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width-input">
+                                <label>A 7-a</label>
+                                <mat-select formControlName="litera7" class="drop">
+                                    <mat-option *ngFor="let lit of numere; let idxI = index" value={{lit}}>{{idxI}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width-input">
+                                <label>A 8-a</label>
+                                <mat-select formControlName="litera8" class="drop">
+                                    <mat-option *ngFor="let lit of numere; let idxI = index" value={{lit}}>{{idxI}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <mat-form-field class="full-width-input">
+                        <label>Câte clase cu predare în regim simultan aveți?</label>
+                        <mat-select formControlName="numarM" class="drop">
+                            <mat-option *ngFor="let nr of numere" value={{nr}}>{{nr}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </form>
+
+            </mat-card-content>
+
+
+
+            <button [disabled]="chillIU || !this.editUnitateForm.valid" type="submit" form="thisoneIUM"
+                mat-raised-button>
+                <span *ngIf="chillIU==false">Salvează</span>
+                <div class="container">
+                    <mat-spinner *ngIf="chillIU==true" [diameter]="25" [strokeWidth]="2"></mat-spinner>
+                </div>
+            </button>
+            <br>
+
+            <p style="color:#DD3333; font-size:14px;"><br>**Atenție, asigurați-vă că datele din această fereastră sunt
+                corecte inainte de a adauga<br> date la butonul "Informații clase".<br>
+                Modificarea acestui formular va șterge toate datele despre clase introduse precedent.</p>
+        </mat-card>
+
+
+    </div>
+</div>

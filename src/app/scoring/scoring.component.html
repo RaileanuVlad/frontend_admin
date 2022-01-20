@@ -1,0 +1,506 @@
+<br><br><br>
+
+
+<div id="outer">
+
+
+
+  <mat-form-field appearance="standard" style="width: 25%; float:left;">
+    <mat-label>Caută</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+  
+
+  <button class="btn btn-success btn-block" (click)="exportexcel()"
+    style="cursor: pointer; width:auto; color:white; float:left; margin-left: 2px; margin-right: 2px; margin-top: 8px; font-size:14px">Descărcați
+    excel admin</button>
+  <button class="btn btn-primary btn-block" routerLink="/chestionar"
+  style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; margin-top: 8px; font-size:12px">Chestionare monitori</button>
+<button class="btn btn-dark btn-block" routerLink="/scoring"
+  style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; margin-top: 8px; font-size:12px" disabled>Pagină
+  scoruri</button>
+<button class="btn btn-primary btn-block" routerLink="/math"
+  style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; font-size:12px">Pagină
+  alerte</button>
+<button class="btn btn-primary btn-block" routerLink="/organizare"
+  style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; margin-top: 8px; font-size:12px">Pas 4 școli</button>
+<button class="btn btn-primary btn-block" routerLink="/preview"
+  style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; font-size:12px">Pagină
+  școli</button>
+
+  <br><br><br><br><br>
+
+    <div style="float:left; margin-top:20px; margin-left:10px; font-size:16px"><span>Indicatori privind criteriul:</span></div>
+<div style="border-radius: 5px; float:left; margin-top:10px; margin-left:10px; padding: 5px; font-size:16px" class="rosu2"><span>etnic</span></div>
+<div style="border-radius: 5px; float:left; margin-top:10px; margin-left:10px; padding: 5px; font-size:16px" class="albastru2"><span>dizabilității</span></div>
+<div style="border-radius: 5px; float:left; margin-top:10px; margin-left:10px; padding: 5px; font-size:16px" class="verde2"><span>statutului socio-economic al familiilor</span></div>
+<div style="border-radius: 5px; float:left; margin-top:10px; margin-left:10px; padding: 5px; font-size:16px" class="mov2"><span>performanțelor școlare ale elevilor</span></div>
+<br><br><br><br>
+</div>
+
+
+
+<div #scoringToExport>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+
+   
+    <ng-container matColumnDef="idScoring">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nr. </th>
+      <td mat-cell *matCellDef="let element"> {{element.idScoring}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="numeScoala">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nume Școala </th>
+      <td mat-cell *matCellDef="let element"> {{element.numeScoala}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="judetS">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Județ </th>
+      <td mat-cell *matCellDef="let element"> {{element.judetS}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="localitateS">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Localitate </th>
+      <td mat-cell *matCellDef="let element"> {{element.localitateS}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorA1">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="rosu1">
+        <button class="inviz"
+          matTooltip="Procentul elevilor romi, la nivelul unității de învățământ.">
+          Scor A1
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" class="rosu1"> {{element.scorA1}}% </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorB1">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="albastru1">
+        <button class="inviz"
+          matTooltip="Procentul elevilor cu dizabilități, la nivelul unității de învățământ.">
+          Scor B1
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" class="albastru1"> {{element.scorB1}}% </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorC1">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="verde1">
+        <button class="inviz"
+          matTooltip="Procentul elevilor ai căror părinți au cel mult 8 clase absolvite, la nivelul unității de învățământ.">
+          Scor C1
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" class="verde1"> {{element.scorC1}}% </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorC6">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="verde1">
+        <button class="inviz"
+          matTooltip="Procentul elevilor beneficiari de burse de ajutor social, la nivelul unității de învățământ.">
+          Scor C6
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" class="verde1"> {{element.scorC6}}% </td>
+    </ng-container>
+
+
+
+
+
+    <ng-container matColumnDef="numeU">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nume Structură </th>
+      <td mat-cell *matCellDef="let element"> {{element.numeU}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="statutU">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Statut </th>
+      <td mat-cell *matCellDef="let element"> {{element.statutU}} </td>
+    </ng-container>
+
+
+
+
+
+    <ng-container matColumnDef="scorA2">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="rosu1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor romi, la nivelul structurii școlare(comparativ cu unitatea școlară).">
+          Scor A2
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.rosu1]="element.scorA2<2 || nana(element.scorA2)"
+        [class.rosu2]="element.scorA2>=2 && element.scorA2<4" [class.rosu3]="element.scorA2>=4 && element.scorA2<6"
+        [class.rosu4]="element.scorA2>=6"> <button class="inviz"
+          matTooltip="Procent elevi romi în această structură: {{element.romiUnitateP}}%" matTooltipPosition="right"
+          aria-label="tooltip1" [style.color]="element.scorA2>=6 ? 'white' : 'black'">
+          {{element.scorA2}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorA3">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="rosu1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor romi, la nivelul fiecărei clădiri(comparativ cu structura școlară).">
+          Scor A3
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.rosu1]="element.scorA3<2 || nana(element.scorA3)"
+        [class.rosu2]="element.scorA3>=2 && element.scorA3<4" [class.rosu3]="element.scorA3>=4 && element.scorA3<6"
+        [class.rosu4]="element.scorA3>=6"> <button class="inviz"
+          matTooltip="Clădirea {{element.romiScorCladireIndex}}"
+          matTooltipPosition="right" aria-label="tooltip2" [style.color]="element.scorA3>=6 ? 'white' : 'black'">
+          {{element.scorA3}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorA4">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="rosu1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor romi la nivelul fiecărei clase(comparativ cu nivelul de învățământ).">
+          Scor A4
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.rosu1]="element.scorA4<2 || nana(element.scorA4)"
+        [class.rosu2]="element.scorA4>=2 && element.scorA4<4" [class.rosu3]="element.scorA4>=4 && element.scorA4<6"
+        [class.rosu4]="element.scorA4>=6"> <button class="inviz" matTooltip="Scoruri claselor:&#13;{{element.romiScorNivelIndex.join(', ')}}&#13;în ordine:&#13;{{element.romiScorNivelValue.join(', ')}}&#13;(romi-nivel)" 
+        matTooltipPosition="right" aria-label="tooltip3"
+          [style.color]="element.scorA4>=6 ? 'white' : 'black'">
+          {{element.scorA4}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorA5">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="rosu1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor romi la nivelul fiecărei clase(comparativ cu așezarea în ultimele două bănci).">
+          Scor A5
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.rosu1]="element.scorA5<2 || nana(element.scorA5)"
+        [class.rosu2]="element.scorA5>=2 && element.scorA5<4" [class.rosu3]="element.scorA5>=4 && element.scorA5<6"
+        [class.rosu4]="element.scorA5>=6"> <button class="inviz"
+          matTooltip="Scoruri claselor:&#13;{{element.romiScor2bIndex.join(', ')}}&#13;în ordine:&#13;{{element.romiScor2bValue.join(', ')}}&#13;(romi-ultimele 2 bănci)"
+          matTooltipPosition="right" aria-label="tooltip4" [style.color]="element.scorA5>=6 ? 'white' : 'black'">
+          {{element.scorA5}}
+        </button> </td>
+    </ng-container>
+
+
+
+
+
+    <ng-container matColumnDef="scorB2">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="albastru1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor cu dizabilități, la nivelul structurii școlare(comparativ cu unitatea școlară).">
+          Scor B2
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.albastru1]="element.scorB2<2 || nana(element.scorB2)"
+        [class.albastru2]="element.scorB2>=2 && element.scorB2<4"
+        [class.albastru3]="element.scorB2>=4 && element.scorB2<6" [class.albastru4]="element.scorB2>=6"> <button
+          class="inviz"
+          matTooltip="Procent elevi cu dizabilități în această structură: {{element.dizabilitatiUnitateP}}%"
+          matTooltipPosition="right" aria-label="tooltip5" [style.color]="element.scorB2>=6 ? 'white' : 'black'">
+          {{element.scorB2}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorB3">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="albastru1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor cu dizabilități, la nivelul fiecărei clădiri(comparativ cu structura școlară).">
+          Scor B3
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.albastru1]="element.scorB3<2 || nana(element.scorB3)"
+        [class.albastru2]="element.scorB3>=2 && element.scorB3<4"
+        [class.albastru3]="element.scorB3>=4 && element.scorB3<6" [class.albastru4]="element.scorB3>=6"> <button
+          class="inviz"
+          matTooltip="Clădirea {{element.dizabilitatiScorCladireIndex}}"
+          matTooltipPosition="right" aria-label="tooltip6" [style.color]="element.scorB3>=6 ? 'white' : 'black'">
+          {{element.scorB3}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorB4">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="albastru1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor cu dizabilități la nivelul fiecărei clase(comparativ cu nivelul de învățământ).">
+          Scor B4
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.albastru1]="element.scorB4<2 || nana(element.scorB4)"
+        [class.albastru2]="element.scorB4>=2 && element.scorB4<4"
+        [class.albastru3]="element.scorB4>=4 && element.scorB4<6" [class.albastru4]="element.scorB4>=6"> <button
+          class="inviz" matTooltip="Scoruri claselor:&#13;{{element.dizabilitatiScorNivelIndex.join(', ')}}&#13;în ordine:&#13;{{element.dizabilitatiScorNivelValue.join(', ')}}&#13;(dizabilități-nivel)" matTooltipPosition="right" aria-label="tooltip7"
+          [style.color]="element.scorB4>=6 ? 'white' : 'black'">
+          {{element.scorB4}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorB5">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="albastru1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor cu dizabilități la nivelul fiecărei clase(comparativ cu așezarea în ultimele două bănci).">
+          Scor B5
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.albastru1]="element.scorB5<2 || nana(element.scorB5)"
+        [class.albastru2]="element.scorB5>=2 && element.scorB5<4"
+        [class.albastru3]="element.scorB5>=4 && element.scorB5<6" [class.albastru4]="element.scorB5>=6"> <button
+          class="inviz"
+          matTooltip="Scoruri claselor:&#13;{{element.dizabilitatiScor2bIndex.join(', ')}}&#13;în ordine:&#13;{{element.dizabilitatiScor2bValue.join(', ')}}&#13;(dizabilități-ultimele 2 bănci)"
+          matTooltipPosition="right" aria-label="tooltip8" [style.color]="element.scorB5>=6 ? 'white' : 'black'">
+          {{element.scorB5}}
+        </button> </td>
+    </ng-container>
+
+
+
+
+
+    <ng-container matColumnDef="scorC2">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="verde1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor ai căror părinți au cel mult 8 clase absolvite, la nivelul structurii școlare(comparativ cu unitatea școlară).">
+          Scor C2
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.verde1]="element.scorC2<2 || nana(element.scorC2)"
+        [class.verde2]="element.scorC2>=2 && element.scorC2<4" [class.verde3]="element.scorC2>=4 && element.scorC2<6"
+        [class.verde4]="element.scorC2>=6"> <button class="inviz"
+          matTooltip="Procent elevi ai căror părinți au cel mult 8 clase absolvite în această structură: {{element.parintiUnitateP}}%"
+          matTooltipPosition="right" aria-label="tooltip9" [style.color]="element.scorC2>=6 ? 'white' : 'black'">
+          {{element.scorC2}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorC3">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="verde1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor ai căror părinți au cel mult 8 clase absolvite, la nivelul fiecărei clădiri(comparativ cu structura școlară).">
+          Scor C3
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.verde1]="element.scorC3<2 || nana(element.scorC3)"
+        [class.verde2]="element.scorC3>=2 && element.scorC3<4" [class.verde3]="element.scorC3>=4 && element.scorC3<6"
+        [class.verde4]="element.scorC3>=6"> <button class="inviz"
+          matTooltip="Clădirea {{element.parintiScorCladireIndex}}"
+          matTooltipPosition="right" aria-label="tooltip10" [style.color]="element.scorC3>=6 ? 'white' : 'black'">
+          {{element.scorC3}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorC4">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="verde1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor ai căror părinți au cel mult 8 clase absolvite la nivelul fiecărei clase(comparativ cu nivelul de învățământ).">
+          Scor C4
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.verde1]="element.scorC4<2 || nana(element.scorC4)"
+        [class.verde2]="element.scorC4>=2 && element.scorC4<4" [class.verde3]="element.scorC4>=4 && element.scorC4<6"
+        [class.verde4]="element.scorC4>=6"> <button class="inviz" matTooltip="Scoruri claselor:&#13;{{element.parintiScorNivelIndex.join(', ')}}&#13;în ordine:&#13;{{element.parintiScorNivelValue.join(', ')}}&#13;(părinți-nivel)" matTooltipPosition="right" aria-label="tooltip11"
+          [style.color]="element.scorC4>=6 ? 'white' : 'black'">
+          {{element.scorC4}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorC5">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="verde1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor ai căror părinți au cel mult 8 clase absolvite la nivelul fiecărei clase(comparativ cu așezarea în ultimele două bănci).">
+          Scor C5
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.verde1]="element.scorC5<2 || nana(element.scorC5)"
+        [class.verde2]="element.scorC5>=2 && element.scorC5<4" [class.verde3]="element.scorC5>=4 && element.scorC5<6"
+        [class.verde4]="element.scorC5>=6"> <button class="inviz"
+          matTooltip="Scoruri claselor:&#13;{{element.parintiScor2bIndex.join(', ')}}&#13;în ordine:&#13;{{element.parintiScor2bValue.join(', ')}}&#13;(părinți-ultimele 2 bănci)"
+          matTooltipPosition="right" aria-label="tooltip12" [style.color]="element.scorC5>=6 ? 'white' : 'black'">
+          {{element.scorC5}}
+        </button> </td>
+    </ng-container>
+
+
+
+
+
+    <ng-container matColumnDef="scorC7">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="verde1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor beneficiari de burse de ajutor social, la nivelul structurii școlare(comparativ cu unitatea școlară).">
+          Scor C7
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.verde1]="element.scorC7<2 || nana(element.scorC7)"
+        [class.verde2]="element.scorC7>=2 && element.scorC7<4" [class.verde3]="element.scorC7>=4 && element.scorC7<6"
+        [class.verde4]="element.scorC7>=6"> <button class="inviz"
+          matTooltip="Procent elevi beneficiari de burse în această structură: {{element.burseUnitateP}}%"
+          matTooltipPosition="right" aria-label="tooltip13" [style.color]="element.scorC7>=6 ? 'white' : 'black'">
+          {{element.scorC7}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorC8">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="verde1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor beneficiari de burse de ajutor social, la nivelul fiecărei clădiri(comparativ cu structura școlară).">
+          Scor C8
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.verde1]="element.scorC8<2 || nana(element.scorC8)"
+        [class.verde2]="element.scorC8>=2 && element.scorC8<4" [class.verde3]="element.scorC8>=4 && element.scorC8<6"
+        [class.verde4]="element.scorC8>=6"> <button class="inviz"
+          matTooltip="Clădirea {{element.burseScorCladireIndex}}"
+          matTooltipPosition="right" aria-label="tooltip14" [style.color]="element.scorC8>=6 ? 'white' : 'black'">
+          {{element.scorC8}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorC9">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="verde1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor beneficiari de burse de ajutor social la nivelul fiecărei clase(comparativ cu nivelul de învățământ).">
+          Scor C9
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.verde1]="element.scorC9<2 || nana(element.scorC9)"
+        [class.verde2]="element.scorC9>=2 && element.scorC9<4" [class.verde3]="element.scorC9>=4 && element.scorC9<6"
+        [class.verde4]="element.scorC9>=6"> <button class="inviz" matTooltip="Scoruri claselor:&#13;{{element.burseScorNivelIndex.join(', ')}}&#13;în ordine:&#13;{{element.burseScorNivelValue.join(', ')}}&#13;(burse-nivel)" matTooltipPosition="right" aria-label="tooltip15"
+          [style.color]="element.scorC9>=6 ? 'white' : 'black'">
+          {{element.scorC9}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorC10">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="verde1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor beneficiari de burse de ajutor social la nivelul fiecărei clase(comparativ cu așezarea în ultimele două bănci).">
+          Scor C10
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.verde1]="element.scorC10<2 || nana(element.scorC10)"
+        [class.verde2]="element.scorC10>=2 && element.scorC10<4"
+        [class.verde3]="element.scorC10>=4 && element.scorC10<6" [class.verde4]="element.scorC10>=6"> <button
+          class="inviz"
+          matTooltip="Scoruri claselor:&#13;{{element.burseScor2bIndex.join(', ')}}&#13;în ordine:&#13;{{element.burseScor2bValue.join(', ')}}&#13;(burse-ultimele 2 bănci)"
+          matTooltipPosition="right" aria-label="tooltip16" [style.color]="element.scorC10>=6 ? 'white' : 'black'">
+          {{element.scorC10}}
+        </button> </td>
+    </ng-container>
+
+
+
+
+
+    <ng-container matColumnDef="scorD1">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="mov1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor repetenți la nivelul fiecărei clase(comparativ cu nivelul de învățământ).">
+          Scor D1
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.mov1]="element.scorD1<2 || nana(element.scorD1)"
+        [class.mov2]="element.scorD1>=2 && element.scorD1<4" [class.mov3]="element.scorD1>=4 && element.scorD1<6"
+        [class.mov4]="element.scorD1>=6"> <button class="inviz"
+          matTooltip="Scoruri claselor:&#13;{{element.repetentiScorNivelIndex.join(', ')}}&#13;în ordine:&#13;{{element.repetentiScorNivelValue.join(', ')}}&#13;(repetenți-nivel)"
+          matTooltipPosition="right" aria-label="tooltip17" [style.color]="element.scorD1>=6 ? 'white' : 'black'">
+          {{element.scorD1}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorD2">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="mov1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor care nu au participat la cursuri online minim 80% din timp la nivelul fiecărei clase(comparativ cu nivelul de învățământ).">
+          Scor D2
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.mov1]="element.scorD2<2 || nana(element.scorD2)"
+        [class.mov2]="element.scorD2>=2 && element.scorD2<4" [class.mov3]="element.scorD2>=4 && element.scorD2<6"
+        [class.mov4]="element.scorD2>=6"> <button class="inviz"
+          matTooltip="Scoruri claselor:&#13;{{element.onlineScorNivelIndex.join(', ')}}&#13;în ordine:&#13;{{element.onlineScorNivelValue.join(', ')}}&#13;(online-nivel)"
+          matTooltipPosition="right" aria-label="tooltip18" [style.color]="element.scorD2>=6 ? 'white' : 'black'">
+          {{element.scorD2}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scorD3">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="mov1">
+        <button class="inviz"
+          matTooltip="Scorul elevilor care au nevoie de educație remedială la nivelul fiecărei clase(comparativ cu nivelul de învățământ).">
+          Scor D3
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element" [class.mov1]="element.scorD3<2 || nana(element.scorD3)"
+        [class.mov2]="element.scorD3>=2 && element.scorD3<4" [class.mov3]="element.scorD3>=4 && element.scorD3<6"
+        [class.mov4]="element.scorD3>=6"> <button class="inviz"
+          matTooltip="Scoruri claselor:&#13;{{element.remedialaScorNivelIndex.join(', ')}}&#13;în ordine:&#13;{{element.remedialaScorNivelValue.join(', ')}}&#13;(remedială-nivel)"
+          matTooltipPosition="right" aria-label="tooltip19" [style.color]="element.scorD3>=6 ? 'white' : 'black'">
+          {{element.scorD3}}
+        </button> </td>
+    </ng-container>
+
+
+
+
+
+    <ng-container matColumnDef="nrDep">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Număr depunere </th>
+      <td mat-cell *matCellDef="let element"
+        [class.rosu]='element.nrDep!=null && element.nrDep.indexOf(substr) == 0 && element.nrDepC==null'
+        [class.albastru]='element.nrDepC!=null'> 
+        {{element.nrDep}}
+      <ng-container *ngIf="element.nrDep==null && (element.scorA1!=0
+      || element.scorA2!=0
+      || element.scorA3!=0
+      || element.scorA4!=0
+      || element.scorA5!=0
+      || element.scorB1!=0
+      || element.scorB2!=0
+      || element.scorB3!=0
+      || element.scorB4!=0
+      || element.scorB5!=0
+      || element.scorC1!=0
+      || element.scorC2!=0
+      || element.scorC3!=0
+      || element.scorC4!=0
+      || element.scorC5!=0
+      || element.scorC6!=0
+      || element.scorC7!=0
+      || element.scorC8!=0
+      || element.scorC9!=0
+      || element.scorC10!=0)">
+        <p style="font-size:12px">Date nesemnate</p>
+      </ng-container> </td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="star">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Anexa 2</th>
+      <td mat-cell *matCellDef="let element">
+        <button class="btn btn-success btn-block" (click)="showModalPdf(element.scoalaId)">PDF</button>
+      </td>
+    </ng-container>
+
+
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Nu există niciun rezultat pentru "{{input.value}}"</td>
+    </tr>
+  </table>
+</div>
+<mat-paginator [pageSizeOptions]="[100, 300, 500, 700, 1500, 3000]" showFirstLastButtons></mat-paginator>
+
+<app-pdf2-modal #pdf2Modal></app-pdf2-modal>

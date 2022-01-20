@@ -1,0 +1,310 @@
+<div bsModal class="row modal fade" #pdfModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="pdfModal"
+    aria-hidden="true">
+    <div class="container">
+
+        <mat-card>
+            <mat-card-content>
+                <button class="btn btn-success btn-block" (click)="downloadAsPDF()"
+                    [disabled]="!isDone || startedDownloading">
+                    <ng-container *ngIf="!isDone && !startedDownloading">
+                        <mat-spinner style="float:left" [diameter]="25" [strokeWidth]="2"></mat-spinner>Se genereaza
+                        PDF-ul...<mat-spinner style="float:right" [diameter]="25" [strokeWidth]="2"></mat-spinner>
+                    </ng-container>
+                    <ng-container *ngIf="isDone && !startedDownloading">Deschide PDF!</ng-container>
+                    <ng-container *ngIf="startedDownloading">
+                        <mat-spinner style="float:left" [diameter]="25" [strokeWidth]="2"></mat-spinner>Se deschide...
+                        <mat-spinner style="float:right" [diameter]="25" [strokeWidth]="2"></mat-spinner>
+                    </ng-container>
+                </button>
+                <div id="down" #down style="display:none">
+
+                    <h1 style="text-align:center">{{scoalaCurenta?.nume}}</h1>
+                    <h4 style="text-align:center; font-size: 18px">{{scoalaCurenta?.judet}} - {{unitati[0]?.localitate}}
+                    </h4>
+
+                    <br><br>
+
+                    <p>
+                        <span *ngIf="!scoalaCurenta?.sirues" style="color:#DD3333">Codul SIRUES: </span>
+                        <span *ngIf="scoalaCurenta?.sirues">Codul SIRUES: </span>
+                        <span style="color:blue">{{scoalaCurenta?.sirues}}</span><br>
+
+                        <span *ngIf="!scoalaCurenta?.director" style="color:#DD3333">Director unitate scolara: </span>
+                        <span *ngIf="scoalaCurenta?.director">Director unitate scolara: </span>
+                        <span style="color:blue">{{scoalaCurenta?.director}}</span><br>
+
+                        <span *ngIf="!scoalaCurenta?.furnizorDate" style="color:#DD3333">Nume si prenume persoana care a
+                            furnizat datele in numele unitatii scolare: </span>
+                        <span *ngIf="scoalaCurenta?.furnizorDate">Nume si prenume persoana care a furnizat datele in
+                            numele unitatii scolare: </span>
+                        <span style="color:blue">{{scoalaCurenta?.furnizorDate}} </span><br>
+
+                        <span *ngIf="!scoalaCurenta?.nrFurnizor" style="color:#DD3333">Numarul de telefon persoana care
+                            a furnizat datele in numele unitatii scolare: </span>
+                        <span *ngIf="scoalaCurenta?.nrFurnizor">Numarul de telefon persoana care a furnizat datele in
+                            numele unitatii scolare: </span>
+                        <span style="color:blue">{{scoalaCurenta?.nrFurnizor}} </span><br>
+
+                    </p>
+
+
+                    <p>
+
+                        <span *ngIf="!scoalaCurenta?.total" style="color:#DD3333">Număr total elevi în școala (toate
+                            structurile): </span>
+                        <span *ngIf="scoalaCurenta?.total">Număr total elevi în școala (toate structurile): </span>
+                        <span style="color:blue">{{scoalaCurenta?.total}}</span>,
+                        <span style="color:rgb(0, 200, 200); font-weight: bold; text-align: left"> DIN CARE:</span><br>
+
+
+                        <span *ngIf="!scoalaCurenta?.romi" style="color:#DD3333">Elevi romi: </span>
+                        <span *ngIf="scoalaCurenta?.romi">Elevi romi: </span>
+                        <span style="color:blue">{{scoalaCurenta?.romi}} </span><br>
+
+
+                        <span *ngIf="!scoalaCurenta?.dizabilitati" style="color:#DD3333">Elevi cu dizabilități: </span>
+                        <span *ngIf="scoalaCurenta?.dizabilitati">Elevi cu dizabilități: </span>
+                        <span style="color:blue">{{scoalaCurenta?.dizabilitati}} </span><br>
+
+
+                        <span *ngIf="!scoalaCurenta?.parinti" style="color:#DD3333">Elevi ai căror părinți au cel mult 8
+                            clase absolvite (gimnaziu): </span>
+                        <span *ngIf="scoalaCurenta?.parinti">Elevi ai căror părinți au cel mult 8 clase absolvite
+                            (gimnaziu): </span>
+                        <span style="color:blue">{{scoalaCurenta?.parinti}} </span><br>
+
+
+                        <span *ngIf="!scoalaCurenta?.burse" style="color:#DD3333">Elevi beneficiari de burse de ajutor
+                            social: </span>
+                        <span *ngIf="scoalaCurenta?.burse">Elevi beneficiari de burse de ajutor social: </span>
+                        <span style="color:blue">{{scoalaCurenta?.burse}} </span><br>
+
+
+                        <span *ngIf="!scoalaCurenta?.repetenti" style="color:#DD3333">Elevi repetenți: </span>
+                        <span *ngIf="scoalaCurenta?.repetenti">Elevi repetenți: </span>
+                        <span style="color:blue">{{scoalaCurenta?.repetenti}} </span><br>
+
+
+                        <span *ngIf="!scoalaCurenta?.online" style="color:#DD3333">Elevi care nu au participat la
+                            cursuri online minim 80% din timp: </span>
+                        <span *ngIf="scoalaCurenta?.online">Elevi care nu au participat la cursuri online minim 80% din
+                            timp: </span>
+                        <span style="color:blue">{{scoalaCurenta?.online}} </span><br>
+
+
+                        <span *ngIf="!scoalaCurenta?.remediala" style="color:#DD3333">Elevi care au nevoie de educație
+                            remedială: </span>
+                        <span *ngIf="scoalaCurenta?.remediala">Elevi care au nevoie de educație remedială: </span>
+                        <span style="color:blue">{{scoalaCurenta?.remediala}} </span><br>
+
+
+                    </p>
+
+                    <p *ngIf="this.unitateIntrebari[0]">
+                        <span *ngIf="!unitateIntrebari[0][0]?.raspuns" style="color:#DD3333">1. Care a fost criteriul
+                            principal în funcție de care au fost alocați elevii
+                            în clasele în care învață, când au fost formate clasele pregătitoare?</span>
+                        <span *ngIf="unitateIntrebari[0][0]?.raspuns">1. Care a fost criteriul principal în funcție de
+                            care au fost alocați elevii
+                            în clasele în care învață, când au fost formate clasele pregătitoare?</span>
+                        <br>
+                        <span style="color:blue">{{unitateIntrebari[0][0]?.raspuns}}</span><br>
+
+                        <span *ngIf="!unitateIntrebari[0][1]?.raspuns" style="color:#DD3333">2. În școala dumneavoastră
+                            se predă limba romani? </span>
+                        <span *ngIf="unitateIntrebari[0][1]?.raspuns">2. În școala dumneavoastră se predă limba romani?
+                        </span>
+                        <span style="color:blue">{{unitateIntrebari[0][1]?.raspuns}}</span><br>
+
+                        <span *ngIf="!unitateIntrebari[0][2]?.raspuns" style="color:#DD3333">3. În școala dumneavoastră
+                            există mediator școlar? </span>
+                        <span *ngIf="unitateIntrebari[0][2]?.raspuns">3. În școala dumneavoastră există mediator
+                            școlar? </span>
+                        <span style="color:blue">{{unitateIntrebari[0][2]?.raspuns}}</span><br>
+
+                        <span *ngIf="!unitateIntrebari[0][3]?.raspuns" style="color:#DD3333">4. În școala dvs. au fost
+                            constituite grupe/clase/unități de învățământ
+                            formate preponderent sau doar cu elevi aparținând unui grup etnic, în scopul predării în
+                            limba maternă a acelui grup etnic sau în sistem bilingv?</span>
+                        <span *ngIf="unitateIntrebari[0][3]?.raspuns">4. În școala dvs. au fost constituite
+                            grupe/clase/unități de învățământ
+                            formate preponderent sau doar cu elevi aparținând unui grup etnic, în scopul predării în
+                            limba maternă a acelui grup etnic sau în sistem bilingv?</span>
+                        <br>
+                        <span style="color:blue">{{unitateIntrebari[0][3]?.raspuns}}</span><br>
+
+                        <span *ngIf="!unitateIntrebari[0][4]?.raspuns" style="color:#DD3333">5. Este stabilit, la
+                            nivelul școlii, cum anume, se vor colecta datele privind
+                            etnia elevilor?</span>
+                        <span *ngIf="unitateIntrebari[0][4]?.raspuns">5. Este stabilit, la nivelul școlii, cum anume, se
+                            vor colecta datele privind
+                            etnia elevilor?</span>
+                        <br>
+                        <span style="color:blue">{{unitateIntrebari[0][4]?.raspuns}}</span><br>
+
+                        <span *ngIf="!unitateIntrebari[0][5]?.raspuns" style="color:#DD3333">6. Este stabilit, la
+                            nivelul școlii, cum anume, se vor colecta datele privind
+                            nivelul educației părinților elevilor?</span>
+                        <span *ngIf="unitateIntrebari[0][5]?.raspuns">6. Este stabilit, la nivelul școlii, cum anume, se
+                            vor colecta datele privind
+                            nivelul educației părinților elevilor?</span>
+                        <br>
+                        <span style="color:blue">{{unitateIntrebari[0][5]?.raspuns}}</span><br>
+
+                        <span *ngIf="!unitateIntrebari[0][6]?.raspuns" style="color:#DD3333">7. Este stabilit, la
+                            nivelul școlii, cum anume, se vor colecta datele privind
+                            dizabilitățile elevilor?</span>
+                        <span *ngIf="unitateIntrebari[0][6]?.raspuns">7. Este stabilit, la nivelul școlii, cum anume, se
+                            vor colecta datele privind
+                            dizabilitățile elevilor?</span>
+                        <br>
+                        <span style="color:blue">{{unitateIntrebari[0][6]?.raspuns}}</span><br>
+
+                    </p>
+
+                    <ng-container *ngFor="let unitate of unitati; index as i;">
+                        <br>
+                        <h1>{{unitate?.nume}}<span style="font-size:18px"> - {{unitate?.nivel}}</span></h1>
+
+
+
+
+                        <table style="width:100%">
+                            <tr style="font-size:9px">
+                                <th>Nivel educațional și litera clasei</th>
+                                <th style="background-color: rgb(254, 216, 177);">Număr total elevi în clasă</th>
+                                <th>Elevi romi</th>
+                                <th>Elevi cu dizabilități</th>
+                                <th>Elevi ai căror părinți au cel mult 8 clase absolvite (gimnaziu)</th>
+                                <th>Elevi beneficiari de burse de ajutor social</th>
+                                <th>Elevi repetenți</th>
+                                <th>Elevi care nu au participat la cursuri online minim 80% din timp</th>
+                                <th>Elevi care au nevoie de educație remedială</th>
+                                <th style="background-color: rgb(173, 216, 230);">Număr total elevi în ultimele două
+                                    bănci</th>
+                                <th style="background-color: rgb(173, 216, 230);">Elevi romi</th>
+                                <th style="background-color: rgb(173, 216, 230);">Elevi cu dizabilități</th>
+                                <th style="background-color: rgb(173, 216, 230);">Elevi ai căror părinți au cel mult 8
+                                    clase absolvite (gimnaziu)</th>
+                                <th style="background-color: rgb(173, 216, 230);">Elevi beneficiari de burse de ajutor
+                                    social</th>
+                                <th style="background-color: rgb(173, 216, 230);">Elevi repetenți</th>
+                                <th style="background-color: rgb(173, 216, 230);">Elevi care nu au participat la cursuri
+                                    online minim 80% din timp</th>
+                                <th style="background-color: rgb(173, 216, 230);">Elevi care au nevoie de educație
+                                    remedială</th>
+                                <th>La elevii din clasă, predarea se face simultan, de către același cadru didactic?
+                                </th>
+                                <th>Anii de învățământ din care este compusă această clasă mixtă</th>
+                                <th>Clădire</th>
+
+
+                            </tr>
+
+                            <ng-container *ngFor="let clasa of this.clase[i]; trackBy: clasTrack">
+                                <tr style="color:blue; font-size:18px">
+                                    <td>{{clasa?.cifra}} {{clasa?.litera}}</td>
+                                    <td style="background-color: rgb(254, 216, 177);">{{clasa?.total}}</td>
+                                    <td>{{clasa?.romi}}</td>
+                                    <td>{{clasa?.dizabilitati}}</td>
+                                    <td>{{clasa?.parinti}}</td>
+                                    <td>{{clasa?.burse}}</td>
+                                    <td>{{clasa?.repetenti}}</td>
+                                    <td>{{clasa?.online}}</td>
+                                    <td>{{clasa?.remediala}}</td>
+                                    <td style="background-color: rgb(173, 216, 230);">{{clasa?.total2b}}</td>
+                                    <td style="background-color: rgb(173, 216, 230);">{{clasa?.romi2b}}</td>
+                                    <td style="background-color: rgb(173, 216, 230);">{{clasa?.dizabilitati2b}}</td>
+                                    <td style="background-color: rgb(173, 216, 230);">{{clasa?.parinti2b}}</td>
+                                    <td style="background-color: rgb(173, 216, 230);">{{clasa?.burse2b}}</td>
+                                    <td style="background-color: rgb(173, 216, 230);">{{clasa?.repetenti2b}}</td>
+                                    <td style="background-color: rgb(173, 216, 230);">{{clasa?.online2b}}</td>
+                                    <td style="background-color: rgb(173, 216, 230);">{{clasa?.remediala2b}}</td>
+                                    <td>{{clasa?.predare}}</td>
+                                    <td>{{clasa?.ani}}</td>
+                                    <td>{{clasa?.cladire}}</td>
+
+
+                                </tr>
+                            </ng-container>
+                            <tr style="color:blue; font-size:18px">
+                                <td>Date structură</td>
+                                <td style="background-color: rgb(254, 216, 177);">{{unitate?.total}}</td>
+                                <td>{{unitate?.romi}}</td>
+                                <td>{{unitate?.dizabilitati}}</td>
+                                <td>{{unitate?.parinti}}</td>
+                                <td>{{unitate?.burse}}</td>
+                                <td>{{unitate?.repetenti}}</td>
+                                <td>{{unitate?.online}}</td>
+                                <td>{{unitate?.remediala}}</td>
+                                <td style="background-color: rgb(173, 216, 230);">X</td>
+                                <td style="background-color: rgb(173, 216, 230);">X</td>
+                                <td style="background-color: rgb(173, 216, 230);">X</td>
+                                <td style="background-color: rgb(173, 216, 230);">X</td>
+                                <td style="background-color: rgb(173, 216, 230);">X</td>
+                                <td style="background-color: rgb(173, 216, 230);">X</td>
+                                <td style="background-color: rgb(173, 216, 230);">X</td>
+                                <td style="background-color: rgb(173, 216, 230);">X</td>
+                                <td>X</td>
+                                <td>X</td>
+                                <td>{{unitate?.nrCladiri}}</td>
+
+
+                            </tr>
+
+                        </table>
+                        <!--
+                        <ng-container *ngFor="let clasa of this.clase[i]; trackBy: clasTrack">
+
+                            <h3>{{clasa?.cifra}}{{clasa?.litera}} - In cladirea {{clasa?.cladire}}:</h3>
+                            <mat-list>
+                                <mat-list-item *ngIf="clasa?.mixt">Anii de invatamant din care este compusa aceasta
+                                    clasa mixta: {{clasa?.ani}}</mat-list-item>
+                                <mat-list-item>La elevii din clasa, predarea se face simultan, de catre acelasi cadru
+                                    didactic? {{clasa?.predare}}</mat-list-item>
+                                <mat-list-item> Numar TOTAL copii in grupa: {{clasa?.total}}, DIN CARE:</mat-list-item>
+                                <mat-list-item>romi: {{clasa?.romi}}</mat-list-item>
+                                <mat-list-item>cu dizabilitati cu dosar DGASPC / situatii medicale sau certificat de
+                                    orientare CJRAE: {{clasa?.dizabilitati}}</mat-list-item>
+                                <mat-list-item>ai caror parinti au cel mult 8 clase absolvite (gimnaziu):
+                                    {{clasa?.parinti}}
+                                </mat-list-item>
+                                <mat-list-item>beneficiari de burse de ajutor social: {{clasa?.burse}}</mat-list-item>
+                                <mat-list-item>repetenti: {{clasa?.repetenti}}</mat-list-item>
+                                <mat-list-item>care nu au participat la cursuri online minim 80% din timp:
+                                    {{clasa?.online}}
+                                </mat-list-item>
+                                <mat-list-item>care au nevoie de educatie remediala: {{clasa?.remediala}}
+                                </mat-list-item>
+
+                                <mat-list-item> Numar TOTAL copii in grupa IN ULTIMELE DOUA BANCI: {{clasa?.total2b}},
+                                    DIN CARE:
+                                </mat-list-item>
+                                <mat-list-item>romi: {{clasa?.romi2b}}</mat-list-item>
+                                <mat-list-item>cu dizabilitati cu dosar DGASPC / situatii medicale sau certificat de
+                                    orientare CJRAE: {{clasa?.dizabilitati2b}}</mat-list-item>
+                                <mat-list-item>ai caror parinti au cel mult 8 clase absolvite (gimnaziu):
+                                    {{clasa?.parinti2b}}
+                                </mat-list-item>
+                                <mat-list-item>beneficiari de burse de ajutor social: {{clasa?.burse2b}}</mat-list-item>
+                                <mat-list-item>repetenti: {{clasa?.repetenti2b}}</mat-list-item>
+                                <mat-list-item>care nu au participat la cursuri online minim 80% din timp:
+                                    {{clasa?.online2b}}
+                                </mat-list-item>
+                                <mat-list-item>care au nevoie de educatie remediala: {{clasa?.remediala2b}}
+                                </mat-list-item>
+                            </mat-list>
+
+                        </ng-container>-->
+
+                    </ng-container>
+
+
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+
+</div>

@@ -1,0 +1,430 @@
+<br><br><br>
+
+
+<div id="outer">
+
+
+    <mat-form-field style="width: 25%; float:left;">
+        <mat-label>Caută</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+
+    <button class="btn btn-success btn-block" (click)="exportexcel()"
+        style="cursor: pointer; width:auto; color:white; float:left; margin-left: 2px; margin-right: 2px; margin-top: 8px">Descărcați
+        excel admin</button>
+    <button class="btn btn-dark btn-block" routerLink="/chestionar"
+        style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; margin-top: 8px"
+        disabled>Chestionare monitori</button>
+    <button class="btn btn-primary btn-block" routerLink="/scoring"
+        style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; margin-top: 8px">Pagină
+        scoruri</button>
+    <button class="btn btn-primary btn-block" routerLink="/math"
+        style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px">Pagină
+        alerte</button>
+    <button class="btn btn-primary btn-block" routerLink="/organizare"
+        style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; margin-top: 8px">Pas
+        4 școli</button>
+    <button class="btn btn-primary btn-block" routerLink="/preview"
+        style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px">Pagină
+        școli</button>
+
+</div>
+
+
+
+<div #chestionarToExport>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+
+        <ng-container matColumnDef="idChestionar">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nr. </th>
+            <td mat-cell *matCellDef="let element"> {{element.idChestionar}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="numeScoala">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nume Școala </th>
+            <td mat-cell *matCellDef="let element"> {{element.numeScoala}} </td>
+        </ng-container>
+
+        <!--<ng-container matColumnDef="judetS">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Județ </th>
+            <td mat-cell *matCellDef="let element"> {{element.judetS}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="localitateS">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Localitate </th>
+            <td mat-cell *matCellDef="let element"> {{element.localitateS}} </td>
+        </ng-container>-->
+
+
+
+
+
+
+        <ng-container matColumnDef="numeU">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nume Structură </th>
+            <td mat-cell *matCellDef="let element"> {{element.numeU}} </td>
+        </ng-container>
+
+        <!--
+        <ng-container matColumnDef="statutU">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Statut </th>
+            <td mat-cell *matCellDef="let element"> {{element.statutU}} </td>
+        </ng-container>-->
+
+
+
+
+
+        <ng-container matColumnDef="raspuns51a">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 1a.(1)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns51a}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns51b">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 1a.(2)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns51b}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns51c">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 1a.(3)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns51c}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns51d">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 1a.(4)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns51d}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns52a">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 1b.(1)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns52a}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns52b">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 1b.(2)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns52b}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns52c">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 1b.(3)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns52c}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns52d">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 1b.(4)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns52d}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns53a">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 2a.(1)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns53a}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns53b">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 2a.(2)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns53b}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns53c">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 2a.(3)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns53c}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns53d">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 2a.(4)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns53d}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns54">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 4
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns54}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns55">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 5
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns55}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns56">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 6
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns56}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns58">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 7
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns58}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns59">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 8
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns59}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns60a">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 9(1)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns60a}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns60b">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 9(2)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns60b}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns61">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 10
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns61}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns62">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 11
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns62}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns63">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 12
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns63}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns64">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 13
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns64}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns65">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 14
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns65}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns68a">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 15(1)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns68a}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns68b">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 15(2)
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns68b}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns69">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 16
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns69}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="raspuns70">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <button class="inviz" matTooltip="">
+                    Q 17
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.raspuns70}}
+            </td>
+        </ng-container>
+
+
+
+
+        <ng-container matColumnDef="pathChestionar">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Documente </th>
+            <td mat-cell *matCellDef="let element"> <a *ngIf="element.pathChestionar" href={{element.pathChestionar}}
+                class="btn btn-success btn-block" target="_blank">
+                Chestionar
+              </a> </td>
+          </ng-container>
+
+
+        <ng-container matColumnDef="nrDep">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Număr depunere </th>
+            <td mat-cell *matCellDef="let element"
+                [class.rosu]='element.nrDep!=null && element.nrDep.indexOf(substr) == 0 && element.nrDepC==null'
+                [class.albastru]='element.nrDepC!=null'> {{element.nrDep}} </td>
+        </ng-container>
+
+        
+
+        <ng-container matColumnDef="star">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Anexa 2</th>
+            <td mat-cell *matCellDef="let element">
+                <button class="btn btn-success btn-block" (click)="showModalPdf(element.scoalaId)">PDF</button>
+            </td>
+        </ng-container>
+
+
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">Nu există niciun rezultat pentru "{{input.value}}"</td>
+        </tr>
+    </table>
+</div>
+<mat-paginator [pageSizeOptions]="[100, 300, 500, 700, 1500, 3000]" showFirstLastButtons></mat-paginator>
+
+<app-pdf2-modal #pdf2Modal></app-pdf2-modal>

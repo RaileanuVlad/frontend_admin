@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*div{border: 1px solid;border-color:Red}*/
+
+.extraUselect {
+    max-height: 75vh !important;
+  }
+
+*{
+  font-family: Roboto,Arial,Helvetica,sans-serif !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

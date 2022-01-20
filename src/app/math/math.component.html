@@ -1,0 +1,225 @@
+<br><br><br>
+
+
+<div id="outer">
+
+
+  <mat-form-field style="width: 25%; float:left">
+    <mat-label>Caută</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input>
+  </mat-form-field>
+
+
+  <button class="btn btn-success btn-block" (click)="exportexcel()"
+  style="cursor: pointer; width:auto; color:white; display:inline-block; margin-left: 2px; margin-right: 2px; margin-top: 8px;">Descărcați
+  excel admin</button>
+  <button class="btn btn-primary btn-block" routerLink="/chestionar"
+    style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; margin-top: 8px; font-size:12px">Chestionare monitori</button>
+  <button class="btn btn-primary btn-block" routerLink="/scoring"
+    style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; margin-top: 8px; font-size:12px">Pagină
+    scoruri</button>
+  <button class="btn btn-dark btn-block" routerLink="/math"
+    style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; font-size:12px" disabled>Pagină
+    alerte</button>
+  <button class="btn btn-primary btn-block" routerLink="/organizare"
+    style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; margin-top: 8px; font-size:12px">Pas 4 școli</button>
+  <button class="btn btn-primary btn-block" routerLink="/preview"
+    style="cursor: pointer; width:auto; color:white; float:right; margin-left: 2px; margin-right: 2px; font-size:12px">Pagină
+    școli</button>
+
+</div>
+
+
+
+<div #mathToExport>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+
+    <ng-container matColumnDef="idMaff">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nr. </th>
+      <td mat-cell *matCellDef="let element"> {{element.idMaff}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="numeScoala">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nume Școala </th>
+      <td mat-cell *matCellDef="let element"> {{element.numeScoala}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="judetS">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Județ </th>
+      <td mat-cell *matCellDef="let element"> {{element.judetS}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="localitateS">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Localitate </th>
+      <td mat-cell *matCellDef="let element"> {{element.localitateS}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="numeU">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nume Structură </th>
+      <td mat-cell *matCellDef="let element"> {{element.numeU}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="statutU">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Statut </th>
+      <td mat-cell *matCellDef="let element"> {{element.statutU}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="alerta1">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> <button class="inviz"
+        matTooltip="Procent romi structură < procent romi localitate => Alertă">
+        Alerta 1
+      </button> </th>
+      <td mat-cell *matCellDef="let element" [class.rosu]='element.alerta1 != "OK"'> <button class="inviz" matTooltip="Procent romi structură:&#13;{{element.romiP}}%&#13;
+      Procent romi localitate:&#13;{{element.romiLocalitate}}%" matTooltipPosition="right" aria-label="tooltip1">
+          {{element.alerta1}}
+        </button></td>
+    </ng-container>
+
+    <ng-container matColumnDef="alerta2">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> <button class="inviz"
+        matTooltip="Procent romi structură < procent romi proiect ISPMN => Alertă (lipsesc datele ISPMN momentan)">
+        Alerta 2 
+      </button></th>
+      <td mat-cell *matCellDef="let element" [class.rosu]='element.alerta2 != "OK"'> {{element.alerta2}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="alerta3">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> <button class="inviz"
+        matTooltip="Procent romi structură vs. proiecte finanțate pentru romi => Alertă (lipsesc datele pentru proiecte momentan)">
+        Alerta 3
+      </button> </th>
+      <td mat-cell *matCellDef="let element" [class.rosu]='element.alerta3 != "OK"'> {{element.alerta3}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="alerta4">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> <button class="inviz"
+        matTooltip="Dacă in școala se predă limba romani, dar nu există cel putin o clasă cu 15 elemi romi => Alertă">
+        Alerta 4
+      </button> </th>
+      <td mat-cell *matCellDef="let element" [class.rosu]='element.alerta4 != "OK"'> <button class="inviz" matTooltip="În școala dumneavoastră se predă limba romani?&#13;{{element.raspuns38}}&#13;
+      Număr total romi în școala:&#13;{{element.romiScoala}}&#13;
+      Există clase cu cel putin 15 romi în școală?&#13;{{element.existaClasa15 ? Da : Nu}}" matTooltipPosition="right"
+          aria-label="tooltip1">
+          {{element.alerta4}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="alerta5">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> <button class="inviz"
+        matTooltip="Dacă în școală există mediator școlar, dar procentul elevilor romi în unitatea școlară este < 10% => Alertă">
+        Alerta 5
+      </button> </th>
+      <td mat-cell *matCellDef="let element" [class.rosu]='element.alerta5 != "OK"'> <button class="inviz" matTooltip="În școala dumneavoastră există mediator școlar?&#13;{{element.raspuns39}}&#13;
+      Procent romi structură:&#13;{{element.romiP}}%" matTooltipPosition="right" aria-label="tooltip1">
+          {{element.alerta5}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="raspuns40">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> <button class="inviz"
+        matTooltip="Răspunsul școlilor la întrebarea: '4. În școala dvs. au fost constituite grupe/clase/unități de învățământ formate preponderent sau doar cu elevi aparținând unui grup etnic, în scopul predării în limba maternă a acelui grup etnic sau în sistem bilingv?'">
+        Alerta 6 (răspuns)
+      </button> </th>
+      <td mat-cell *matCellDef="let element" [class.rosu]='element.alerta6 != "OK"'> {{element.raspuns40}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="alerta7">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> <button class="inviz"
+        matTooltip="Dacă suma elevilor din fiecare clasă a structurii școlare este diferită de numărul total de elevi declarați de către școala pentru această structură => Alertă">
+        Alerta 7 
+      </button></th>
+      <td mat-cell *matCellDef="let element" [class.rosu]='element.alerta7 != "OK"'> <button class="inviz" matTooltip="Total:{{element.total}}; Total Calculat:{{element.totalC}}&#13;
+      Romi:{{element.romi}}; Romi Calculat:{{element.romiC}}&#13;
+      Dizabilitati:{{element.dizabilitati}}; Dizabilitati Calculat:{{element.dizabilitatiC}}&#13;
+      Parinti:{{element.parinti}}; Parinti Calculat:{{element.parintiC}}&#13;
+      Burse:{{element.burse}}; Burse Calculat:{{element.burseC}}&#13;
+      Repetenti:{{element.repetenti}}; Repetenti Calculat:{{element.repetentiC}}&#13;
+      Online:{{element.online}}; Online Calculat:{{element.onlineC}}&#13;
+      Remediala:{{element.remediala}}; Remediala Calculat:{{element.remedialaC}}&#13;
+      " matTooltipPosition="right" aria-label="tooltip1">
+          {{element.alerta7}}
+        </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="alerta8">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> <button class="inviz"
+        matTooltip="Dacă există clase în care, pentru oricare din cele 8 tipuri de elevi, sunt mai mulți declarați în ultimele două bănci decăt in total în clasă, aceste clase problematice apar aici.">
+        Alerta 8
+      </button> </th>
+      <td mat-cell *matCellDef="let element" [class.rosu]='element.alerta8 != "OK"'> <button class="inviz" matTooltip="Clase problematice: {{element.badClasaNume}}&#13; Dacă nu au literă, primesc alertă deoarece nu sunt completate datele" matTooltipPosition="right" aria-label="tooltip1">
+            {{element.alerta8}}
+          </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="alerta9">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> <button class="inviz"
+        matTooltip="Se verifică răspunsul la itemul 'Este stabilit, la nivelul școlii, cum anume, se colectează datele privind etnia elevilor?'&#13;
+        Dacă răspunsul este NU la această întrebare și totuși avem cel puțin un copil rom raportat în unitatea școlară => Alertă&#13;
+        Dacă răspunsul este DA la această întrebare și apoi a fost aleasă orice altă variantă cu excepția variantei 9 - 'Prin declarație semnată de către părinți/tutori/reprezentanți legali a etniei' => Alertă">
+        Alerta 9
+      </button> </th>
+      <td mat-cell *matCellDef="let element" [class.rosu]='element.alerta9 != "OK"'> <button class="inviz" matTooltip="Este stabilit, la nivelul școlii, cum anume, se colectează datele privind etnia elevilor?&#13;{{element.raspuns41}}&#13;
+        Număr total romi în școala:&#13;{{element.romiScoala}}" matTooltipPosition="right" aria-label="tooltip1">
+            {{element.alerta9}}
+          </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="alerta10">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> <button class="inviz"
+        matTooltip="Se verifică răspunsul la itemul 'Este stabilit, la nivelul școlii, cum anume, se colectează datele privind nivelul educației părinților elevilor?'&#13;
+        Dacă răspunsul este NU la această întrebare și totuși avem cel puțin un copil cu educație parentală sub 8 clase raportat în unitatea școlară => Alertă&#13;
+        Dacă răspunsul este DA la această întrebare și apoi a fost aleasă orice altă variantă cu excepția variantei 6 - 'Prin declarație semnată de către părinți/tutori/reprezentanți legali privind educația obținută' => Alertă">
+        Alerta 10
+      </button> </th>
+      <td mat-cell *matCellDef="let element" [class.rosu]='element.alerta10 != "OK"'> <button class="inviz" matTooltip="Este stabilit, la nivelul școlii, cum anume, se colectează datele privind nivelul educației părinților elevilor?&#13;{{element.raspuns46}}&#13;
+        Număr total copii cu educație parentală sub 8 clase:&#13;{{element.parintiScoala}}" matTooltipPosition="right" aria-label="tooltip1">
+            {{element.alerta10}}
+          </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="alerta11">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> <button class="inviz"
+        matTooltip="Se verifică răspunsul la itemul 'Este stabilit, la nivelul școlii, cum anume, se colectează datele privind dizabilitățile elevilor?'&#13;
+        Dacă răspunsul este NU la această întrebare și totuși avem cel puțin un copil cu dizabilitate raportat în unitatea școlară => Alertă&#13;
+        Dacă răspunsul este DA la această întrebare și apoi a fost aleasă orice altă variantă cu excepția variantei 5 – 'Pe baza dosarului DGASPC care constată situații medicale speciale sau CES în baza certificatului de orientare CJRAE' => Alertă">
+        Alerta 11
+      </button> </th>
+      <td mat-cell *matCellDef="let element" [class.rosu]='element.alerta11 != "OK"'> <button class="inviz" matTooltip="Este stabilit, la nivelul școlii, cum anume, se colectează datele privind dizabilitățile elevilor?&#13;{{element.raspuns47}}&#13;
+        Număr total copii cu dizabilități:&#13;{{element.dizabilitatiScoala}}" matTooltipPosition="right" aria-label="tooltip1">
+            {{element.alerta11}}
+          </button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nrDep">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Număr depunere </th>
+      <td mat-cell *matCellDef="let element" 
+      [class.rosu]='element.nrDep!=null && element.nrDep.indexOf(substr) == 0 && element.nrDepC==null'
+      [class.albastru]='element.nrDepC!=null'> {{element.nrDep}} </td>
+    </ng-container>
+
+  
+  <ng-container matColumnDef="star">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Anexe (1 sau 2)</th>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="element.nrDepC==null"><button class="btn btn-success btn-block" (click)="showModalPdf(element.scoalaId)">PDF</button></ng-container>
+      <ng-container *ngIf="element.nrDepC!=null"><button class="btn btn-success btn-block" (click)="showModalPdf2(element.scoalaId)">PDF 2</button></ng-container>
+    </td>
+  </ng-container>
+
+
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Nu există niciun rezultat pentru "{{input.value}}"</td>
+    </tr>
+  </table>
+</div>
+<mat-paginator [pageSizeOptions]="[100, 300, 500, 700, 1500, 3000]" showFirstLastButtons></mat-paginator>
+
+<app-pdf-modal #pdfModal></app-pdf-modal>
+<app-pdf2-modal #pdf2Modal></app-pdf2-modal>

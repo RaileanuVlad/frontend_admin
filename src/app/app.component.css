@@ -1,0 +1,41 @@
+.bg {
+  background-image: url("assets/BG-2.jpg");
+  height: 100vh;
+  width: 100vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-y: scroll;
+}
+
+
+a {
+  font-size: 20px;
+  margin-top:10px;
+  margin-right:10px;
+  float:right;
+}
+
+
+footer {
+  position: sticky;
+  display: block;
+  margin-top: 1000px;
+  border-top: 1px solid;
+}
+
+.headimg{
+  width: 200px;
+  height: auto;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  }
+
+  h1{
+    font-size: 50px !important;
+  }

@@ -1,0 +1,386 @@
+<div bsModal class="modal fade" #monitorModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="monitorModal"
+    aria-hidden="true">
+    <div class="container">
+
+        <mat-card>
+            <mat-card-content>
+
+                <div style="float:right">
+                    <button style="width:auto" [disabled]="chillMo" type="button" (click)="this.modal.hide()"
+                        mat-raised-button>
+                        <span>Închide</span>
+                    </button>
+                </div>
+
+                <div style="float:left">
+                    <input type="file" #file placeholder="Choose file" (click)="resetProgress()"
+                        (change)="uploadFile(file.files)" style="display:none">
+                    <button style="width:auto" [disabled]="chillMo || (progress > 0 && progress < 100)" type="button" (click)="file.click()"
+                        mat-raised-button>
+                        <span>Încarcă chestionarul</span>
+                    </button>
+                    <span class="upload" *ngIf="progress > 0">
+                        {{progress}}%
+                    </span>
+                    <span class="upload" *ngIf="progress ==100">
+                        Incărcare completă!
+                    </span>
+
+                </div>
+
+                <br><br><br><br>
+                <form (ngSubmit)="editIntrebareM()" id="thisoneM" (keydown.enter)="$event.preventDefault()">
+
+                    <div>
+                        <p style="font-size:20px; font-weight:400">1. Există, la nivelul școlii, declarație semnată de
+                            către părinți/tutori/reprezentanți legali ai
+                            fiecărui elev privind:</p>
+
+
+
+                        <p style="font-size:16px; text-align:left">a. etnia copilului?</p>
+                    </div>
+
+
+                    <div class="divstanga">
+                        <mat-form-field>
+                            <label class="lmic">Clasa 1 </label>
+                            <mat-select [(ngModel)]="raspunsuri[0]" name="raspuns1a" class="imic">
+                                <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                                <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <label class="lmic">Clasa 2 </label>
+                            <mat-select [(ngModel)]="raspunsuri2[0]" name="raspuns1b" class="imic">
+                                <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                                <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="divdreapta">
+                        <mat-form-field>
+                            <label class="lmic">Clasa 3 </label>
+                            <mat-select [(ngModel)]="raspunsuri3[0]" name="raspuns1c" class="imic">
+                                <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                                <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <label class="lmic">Clasa 4 </label>
+                            <mat-select [(ngModel)]="raspunsuri4[0]" name="raspuns1d" class="imic">
+                                <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                                <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+
+
+                    <div>
+                        <p style="font-size:16px; text-align:left">b. nivelul educației părinților? </p>
+                    </div>
+                    <div class="divstanga">
+                        <mat-form-field>
+                            <label class="lmic">Clasa 1 </label>
+                            <mat-select [(ngModel)]="raspunsuri[1]" name="raspuns2a" class="imic">
+                                <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                                <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <label class="lmic">Clasa 2 </label>
+                            <mat-select [(ngModel)]="raspunsuri2[1]" name="raspuns2b" class="imic">
+                                <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                                <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="divdreapta">
+                        <mat-form-field>
+                            <label class="lmic">Clasa 3 </label>
+                            <mat-select [(ngModel)]="raspunsuri3[1]" name="raspuns2c" class="imic">
+                                <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                                <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <label class="lmic">Clasa 4 </label>
+                            <mat-select [(ngModel)]="raspunsuri4[1]" name="raspuns2d" class="imic">
+                                <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                                <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+
+
+
+
+
+                    <div>
+                        <p style="font-size:20px; font-weight:400">2. În cazul copiilor raportați cu dizabilități, a
+                            fost consultat dosarul DGASPC
+                            (pentru
+                            situații medicale speciale) sau, în cazul elevilor cu CES, certificatul de orientare
+                            CJRAE?
+                            Există copie la nivelul școlii după aceste documente? </p>
+                    </div>
+
+
+                    <div class="divstanga">
+                        <mat-form-field>
+                            <label class="lmic">Clasa 1 </label>
+                            <mat-select [(ngModel)]="raspunsuri[2]" name="raspuns3a" class="imic">
+                                <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                                <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <label class="lmic">Clasa 2 </label>
+                            <mat-select [(ngModel)]="raspunsuri2[2]" name="raspuns3b" class="imic">
+                                <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                                <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="divdreapta">
+                        <mat-form-field>
+                            <label class="lmic">Clasa 3 </label>
+                            <mat-select [(ngModel)]="raspunsuri3[2]" name="raspuns3c" class="imic">
+                                <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                                <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <label class="lmic">Clasa 4 </label>
+                            <mat-select [(ngModel)]="raspunsuri4[2]" name="raspuns3d" class="imic">
+                                <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                                <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+
+                    <mat-form-field>
+                        <label>4. Se poate discuta, în cadrul unității școlare, cu un responsabil special desemnat
+                            cu
+                            colectarea și transmiterea datelor privind segregarea școlară și a modalității de
+                            colectare
+                            a acestor date
+                        </label>
+                        <mat-select [(ngModel)]="raspunsuri[3]" name="raspuns4">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>5. Cum se derulează procesul de colectare a datelor: </label>
+                        <mat-select [(ngModel)]="raspunsuri[4]" name="raspuns5" style="font-size:16px">
+                            <mat-option style="border-top: 2px solid black;"
+                                value="a.	prin intermediul unui responsabil care colectează direct datele de la toate clasele">
+                                a. prin intermediul unui responsabil care colectează direct datele de la toate
+                                clasele
+                            </mat-option>
+                            <mat-option
+                                value="b.	responsabilul doar centralizează datele transmise de cadrul didactic coordonator al fiecărei clase (învățătoare, diriginte)?">
+                                b. responsabilul doar centralizează datele transmise de cadrul didactic coordonator
+                                al
+                                fiecărei clase (învățătoare, diriginte)?</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="c.	Altcumva. Cum?">c.
+                                Altcumva.
+                                Cum?</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>6. Cadrele didactice și reprezentanții școlii au neclarități cu privire la derularea
+                            procesului de monitorizare a segregării școlare? </label>
+                        <mat-select [(ngModel)]="raspunsuri[5]" name="raspuns6">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>7. Există în cadrul școlii monitor școlar ? </label>
+                        <mat-select [(ngModel)]="raspunsuri[6]" name="raspuns7">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>8. Este implicat monitorul școlar în procesul de monitorizare a segregării
+                            școlare?</label>
+                        <mat-select [(ngModel)]="raspunsuri[7]" name="raspuns8">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+
+                    <p style="font-size:20px; font-weight:400">9. În opinia a cel puțin doi părinți romi ai unor
+                        copii din școală, există segregare
+                        școlară în unitatea școlară – copii romi sunt mai degrabă concentrați în anumite clase /
+                        anumite clădiri?</p>
+
+
+                    <mat-form-field>
+                        <label class="lmic">Părinte 1 </label>
+                        <mat-select [(ngModel)]="raspunsuri[8]" name="raspuns9a" class="imic">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA, există segregare școlară
+                            </mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU , nu există segregare
+                                școlară</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+
+                    <mat-form-field>
+                        <label class="lmic">Părinte 2 </label>
+                        <mat-select [(ngModel)]="raspunsuri2[8]" name="raspuns9b" class="imic">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA, există segregare școlară
+                            </mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU , nu există segregare
+                                școlară</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+
+                    <mat-form-field>
+                        <label>10. Au fost constituite în școală grupe de elevi pentru a participa la educația
+                            online,
+                            în perioada pandemiei, diferit de modul de constituire în clase înainte de demararea
+                            pandemiei? </label>
+                        <mat-select [(ngModel)]="raspunsuri[9]" name="raspuns10">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>11. Se poate identifica în școală minim un profesor care predă limba romani?
+                        </label>
+                        <mat-select [(ngModel)]="raspunsuri[10]" name="raspuns11">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>12. Sunt identificate clase / grupe în școală formate preponderent sau doar cu elevi
+                            aparținând unui grup etnic, în scopul predării în limba maternă a acelui grup etnic sau
+                            în
+                            sistem bilingv?
+                        </label>
+                        <mat-select [(ngModel)]="raspunsuri[11]" name="raspuns12">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>13. Au putut fi constatate în cadrul școlii măsuri adoptate pentru a preveni
+                            segregarea
+                            școlară?
+                        </label>
+                        <mat-select [(ngModel)]="raspunsuri[12]" name="raspuns13">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+
+
+                    <mat-form-field>
+                        <label>14. Poate fi constatat la nivelul școlii un sistem computerizat de repartizare
+                            aleatoare
+                            a copiilor în clasa pregătitoare (dacă sunt mai multe clase) </label>
+                        <mat-select [(ngModel)]="raspunsuri[13]" name="raspuns14">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+
+                    <p style="font-size:20px; font-weight:400">15. Care este numărul copiilor transferați pe
+                        parcursul anului școlar în curs, și DIN
+                        CARE, care este numărul copiilor transferați ca urmare a nemulțumirii manifestate de
+                        părinți
+                        privind condițiile educaționale din unitatea școlară/clasă? </p>
+                    <mat-form-field>
+                        <label style="font-size:16px; text-align:left">Nr. copii transferați(date oficiale):</label>
+                        <input matInput [(ngModel)]="raspunsuri[14]" name="raspuns15a">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label style="font-size:16px; text-align:left">Nr. copii transferați ca urmare a nemulțumirii
+                            manifestate de părinți
+                            privind
+                            condițiile
+                            educaționale din unitatea școlară/clasă(Estimare a cadrelor didactice):</label>
+                        <input matInput [(ngModel)]="raspunsuri2[14]" name="raspuns15b">
+                    </mat-form-field>
+
+
+                    <mat-form-field>
+                        <label>16. ÎN CAZUL ÎN CARE EXISTĂ MAI MULTE CLASE FORMATE LA NIVEL PRIMAR. În unitatea
+                            școlară
+                            s-a instituit o procedură de distribuire aleatoare a elevilor în clase (
+                            distribuirea
+                            elevilor de un anumit nivel educațional au fost alocați aleator, de computer sau
+                            prin
+                            altă
+                            modalitate în clasele în care învață?)
+                        </label>
+                        <mat-select [(ngModel)]="raspunsuri[15]" name="raspuns16">
+                            <mat-option style="border-top: 2px solid black;" value="DA">DA</mat-option>
+                            <mat-option style="border-bottom: 2px solid black;" value="NU">NU</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>17. În cadrul vizitei derulate în unitatea școlară, în clădiri/corpuri de
+                            clădiri, în
+                            clase, se va estima, în baza informațiilor obținute de la actorii locali(mediator
+                            școlar,
+                            expert rom, facilitatori comunitari etc.), potrivit altor surse locale ale
+                            monitorului
+                            sau
+                            în baza observațiilor proprii ponderea elevilor romi. Se va indica o estimare
+                            procentuală a
+                            elevilor de etnie Roma în CLĂDIRI (pentru unitatea școlară vezi butonul: Date generale,
+                            pentru structura vezi butonul: Date structură, pentru clase vezi butonul: Informații clase):
+                        </label>
+                        <input matInput [(ngModel)]="raspunsuri[16]" name="raspuns17">
+                    </mat-form-field>
+
+
+
+
+                </form>
+
+            </mat-card-content>
+            <button [disabled]="chillMo || raspunsuri.includes(emptyS)" type="submit" form="thisoneM" mat-raised-button>
+                <span *ngIf="chillMo==false">Salveaza</span>
+                <div class="container">
+                    <mat-spinner *ngIf="chillMo==true" [diameter]="25" [strokeWidth]="2"></mat-spinner>
+                </div>
+            </button>
+        </mat-card>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,80 @@
+<div bsModal class="modal fade" #addModal="bs-modal" tabindex="-1" role="dialog"
+    aria-labelledby="addModal" aria-hidden="true">
+    <div class="container" *ngIf="addUnitateForm">
+
+        <mat-card>
+            <mat-card-content>
+
+                <div style="text-align:right">
+                    <button style="width:20%" [disabled]="chillAdd" type="button" (click)="this.modal.hide()"
+                        mat-raised-button>
+                        <span>Inchide</span>
+                    </button>
+                </div>
+                
+                <form *ngIf="addUnitateForm" [formGroup]="addUnitateForm" (ngSubmit)="addUnitate()" id="thisoneAdd" (keydown.enter)="$event.preventDefault()">
+                    <h1>Adaugati informatii</h1>
+
+                    <mat-form-field>
+                        <mat-label>Localitate*:</mat-label>
+                        <input matInput formControlName="localitate">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width-input">
+                        <mat-label>Nume structura arondata*:</mat-label>
+                        <input matInput formControlName="nume">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width-input" style = "display:inline-block; width: 80%">
+                        <mat-label>Strada:
+                        </mat-label>
+                        <input matInput formControlName="strada">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width-input" style = "display:inline-block; width: 20%">
+                        <mat-label>Numarul:
+                        </mat-label>
+                        <input matInput formControlName="nrStrada">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width-input">
+                        <mat-label>Cod postal:
+                        </mat-label>
+                        <input matInput formControlName="codPostal">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width-input">
+                        <mat-label>Telefon:
+                        </mat-label>
+                        <input matInput formControlName="telefon">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width-input">
+                        <mat-label>Fax:
+                        </mat-label>
+                        <input matInput formControlName="fax">
+                    </mat-form-field>
+
+                    
+
+                </form>
+
+            </mat-card-content>
+            <button type="submit" form="thisoneAdd" mat-raised-button [disabled]="!this.addUnitateForm.valid || this.addUnitateForm.pristine || chillAdd">
+                
+                <span *ngIf="chillAdd==false">Adauga</span>
+                <div class="container">
+                    <mat-spinner *ngIf="chillAdd==true" [diameter]="25" [strokeWidth]="2"></mat-spinner>
+                </div>
+            
+            </button>
+    
+                
+                
+     
+
+        </mat-card>
+
+    </div>
+
+</div>

@@ -1,0 +1,46 @@
+<div bsModal class="modal fade" #deleteModal="bs-modal" tabindex="-1" role="dialog"
+    aria-labelledby="deleteModal" aria-hidden="true">
+    <div class="container" >
+
+        <mat-card>
+            <mat-card-content>
+
+                <div style="text-align:right">
+                    <button class="inchide" style="width:5%" [disabled]="chillDel" type="button" (click)="this.modal.hide()"
+                        mat-raised-button>
+                        <span>X</span>
+                    </button>
+                </div>
+
+
+
+                <h1 style="text-align:left">Sunteti siguri ca doriti sa stergeti structura {{getNumeCheck}}?</h1>
+
+                <h2 style="text-align:left; font-style:italic; font-weight: bold;">Această acțiune este ireversibilă. Toate clasele completate pentru această structură vor fi șterse.</h2>
+
+                <mat-form-field>
+                    <label style="text-align:left">Introduceti numele acestei structuri pentru a confirma stergerea ei:</label>
+                    <input matInput [(ngModel)]="this.confirm">
+                </mat-form-field>
+
+            </mat-card-content>
+
+
+            <button class="sterge" mat-raised-button [disabled]="this.confirm != this.getNumeCheck || chillDel" (click)="deleteUnitate()">
+                
+                <span *ngIf="chillDel==false">Sterge</span>
+                <div class="container">
+                    <mat-spinner *ngIf="chillDel==true" [diameter]="25" [strokeWidth]="2"></mat-spinner>
+                </div>
+            
+            </button>
+    
+                
+                
+     
+
+        </mat-card>
+
+    </div>
+
+</div>

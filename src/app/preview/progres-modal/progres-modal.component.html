@@ -1,0 +1,82 @@
+<div bsModal class="row modal fade" #progresModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="progresModal"
+    aria-hidden="true">
+    <div class="container">
+
+        <mat-card>
+            <mat-card-content>
+
+
+                <h1 style="text-align:center">Progres județe</h1>
+
+                <table style="width:100%">
+                    <tr>
+                        <th></th>
+                        <th>București</th>
+                        <th>Botoșani</th>
+                        <th>Brașov</th>
+                        <th>Cluj</th>
+                        <th>Constanța</th>
+                        <th>Ialomița</th>
+                        <th>Iași</th>
+                        <th>Maramureș</th>
+                        <th>Mureș</th>
+                        <th>Prahova</th>
+                        <th>Suceava</th>
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <td>Număr de școli care au chestionarul complet</td>
+                        <td>{{progres?.pBucuresti}}</td>
+                        <td>{{progres?.pBotosani}}</td>
+                        <td>{{progres?.pBrasov}}</td>
+                        <td>{{progres?.pCluj}}</td>
+                        <td>{{progres?.pConstanta}}</td>
+                        <td>{{progres?.pIalomita}}</td>
+                        <td>{{progres?.pIasi}}</td>
+                        <td>{{progres?.pMaramures}}</td>
+                        <td>{{progres?.pMures}}</td>
+                        <td>{{progres?.pPrahova}}</td>
+                        <td>{{progres?.pSuceava}}</td>
+                        <td>{{pTotal}}</td>
+                    </tr>
+                    <tr>
+                        <td>Număr total de școli in acest județ</td>
+                        <td>{{progres?.tBucuresti}}</td>
+                        <td>{{progres?.tBotosani}}</td>
+                        <td>{{progres?.tBrasov}}</td>
+                        <td>{{progres?.tCluj}}</td>
+                        <td>{{progres?.tConstanta}}</td>
+                        <td>{{progres?.tIalomita}}</td>
+                        <td>{{progres?.tIasi}}</td>
+                        <td>{{progres?.tMaramures}}</td>
+                        <td>{{progres?.tMures}}</td>
+                        <td>{{progres?.tPrahova}}</td>
+                        <td>{{progres?.tSuceava}}</td>
+                        <td>{{tTotal}}</td>
+                    </tr>
+                    <tr>
+                        <td>Procent</td>
+                        <td>{{progres?.pBucuresti / progres?.tBucuresti * 100 | number: '1.2-2'}}%</td>
+                        <td>{{progres?.pBotosani / progres?.tBotosani * 100 | number: '1.2-2'}}%</td>
+                        <td>{{progres?.pBrasov / progres?.tBrasov * 100 | number: '1.2-2'}}%</td>
+                        <td>{{progres?.pCluj / progres?.tCluj * 100 | number: '1.2-2'}}%</td>
+                        <td>{{progres?.pConstanta / progres?.tConstanta * 100 | number: '1.2-2'}}%</td>
+                        <td>{{progres?.pIalomita / progres?.tIalomita * 100 | number: '1.2-2'}}%</td>
+                        <td>{{progres?.pIasi / progres?.tIasi * 100 | number: '1.2-2'}}%</td>
+                        <td>{{progres?.pMaramures / progres?.tMaramures * 100 | number: '1.2-2'}}%</td>
+                        <td>{{progres?.pMures / progres?.tMures* 100 | number: '1.2-2'}}%</td>
+                        <td>{{progres?.pPrahova / progres?.tPrahova * 100 | number: '1.2-2'}}%</td>
+                        <td>{{progres?.pSuceava / progres?.tSuceava * 100 | number: '1.2-2'}}%</td>
+                        <td>{{pTotal / tTotal * 100 | number: '1.2-2'}}%</td>
+                    </tr>
+                </table>
+
+                <br><br>
+
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+
+</div>
